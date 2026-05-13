@@ -69,9 +69,8 @@ export interface AlbumData {
 // Quality options mapping
 export const QUALITY_OPTIONS = [
   { value: "standard", label: "标准", desc: "128kbps" },
-  { value: "higher", label: "极高", desc: "192kbps" },
-  { value: "exhigh", label: "无损", desc: "320kbps" },
-  { value: "lossless", label: "Hi-Res", desc: "FLAC" },
+  { value: "exhigh", label: "极高", desc: "320kbps" },
+  { value: "lossless", label: "无损", desc: "FLAC" },
   { value: "hires", label: "Hi-Res", desc: "高解析度" },
   { value: "jyeffect", label: "高清环绕声", desc: "环绕声" },
   { value: "sky", label: "沉浸环绕声", desc: "天空声道" },
