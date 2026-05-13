@@ -1,0 +1,377 @@
+2026-05-12 20:13:33,108 - music_api - INFO - __init__:90 - 音乐API服务初始化完成，下载目录: C:\Users\ASUS\Downloads\Netease_url-main\Netease_url-main\downloads
+2026-05-12 20:13:46,700 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-12 20:13:46,784 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-12 20:13:47,422 - music_api - INFO - before_request:215 - GET /favicon.ico - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-12 20:13:47,426 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-12 20:14:07,990 - music_api - INFO - before_request:215 - POST /Search - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-12 20:14:09,239 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:47:50,237 - music_api - INFO - __init__:90 - 音乐API服务初始化完成，下载目录: F:\Q\云音乐解析\Netease_url-main\downloads
+2026-05-13 15:48:01,846 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:48:02,057 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:49:46,830 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:49:46,839 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:49:49,811 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:49:49,813 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:49:50,291 - music_api - INFO - before_request:215 - GET /favicon.ico - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:49:50,292 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:10,924 - music_api - INFO - __init__:90 - 音乐API服务初始化完成，下载目录: F:\Q\云音乐解析\Netease_url-main\downloads
+2026-05-13 15:50:15,556 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:15,633 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:50:16,202 - music_api - INFO - before_request:215 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,204 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,206 - music_api - INFO - before_request:215 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,209 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,329 - music_api - INFO - before_request:215 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,332 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,335 - music_api - INFO - before_request:215 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,340 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,346 - music_api - INFO - before_request:215 - GET /_next/static/chunks/cfdddf3a67246977.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,354 - music_api - INFO - before_request:215 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,362 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,366 - music_api - INFO - before_request:215 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,368 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,387 - music_api - INFO - before_request:215 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,398 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,401 - music_api - INFO - before_request:215 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,428 - music_api - INFO - before_request:215 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,446 - music_api - INFO - before_request:215 - GET /_next/static/chunks/4b327841984d96fa.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,447 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,466 - music_api - INFO - before_request:215 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:16,469 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,475 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,481 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:16,486 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:28,474 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,476 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:50:28,894 - music_api - INFO - before_request:215 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,898 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:28,903 - music_api - INFO - before_request:215 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,912 - music_api - INFO - before_request:215 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,914 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:28,919 - music_api - INFO - before_request:215 - GET /_next/static/chunks/cfdddf3a67246977.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,921 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:28,925 - music_api - INFO - before_request:215 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,932 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:28,936 - music_api - INFO - before_request:215 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,942 - music_api - INFO - before_request:215 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,956 - music_api - INFO - before_request:215 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,963 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:28,967 - music_api - INFO - before_request:215 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,975 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:28,978 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:28,982 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:28,986 - music_api - INFO - before_request:215 - GET /_next/static/chunks/4b327841984d96fa.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:28,995 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:29,014 - music_api - INFO - before_request:215 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:29,025 - music_api - INFO - before_request:215 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:29,031 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:29,040 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:29,043 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:35,477 - music_api - INFO - before_request:215 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:35,479 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:50:35,884 - music_api - INFO - before_request:215 - GET /favicon.ico - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:50:35,885 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:40,670 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:40,671 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:52:41,360 - music_api - INFO - before_request:215 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,365 - music_api - INFO - before_request:215 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,367 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,369 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,376 - music_api - INFO - before_request:215 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,383 - music_api - INFO - before_request:215 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,385 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,399 - music_api - INFO - before_request:215 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,402 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,418 - music_api - INFO - before_request:215 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,436 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,443 - music_api - INFO - before_request:215 - GET /_next/static/chunks/4b327841984d96fa.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,455 - music_api - INFO - before_request:215 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,460 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,467 - music_api - INFO - before_request:215 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,469 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,481 - music_api - INFO - before_request:215 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,484 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,493 - music_api - INFO - before_request:215 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,499 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,509 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,526 - music_api - INFO - before_request:215 - GET /_next/static/chunks/cfdddf3a67246977.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:41,529 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:41,543 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:43,969 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:43,971 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:52:44,409 - music_api - INFO - before_request:215 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,411 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,425 - music_api - INFO - before_request:215 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,431 - music_api - INFO - before_request:215 - GET /_next/static/chunks/cfdddf3a67246977.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,439 - music_api - INFO - before_request:215 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,441 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,445 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,448 - music_api - INFO - before_request:215 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,456 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,464 - music_api - INFO - before_request:215 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,474 - music_api - INFO - before_request:215 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,476 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,486 - music_api - INFO - before_request:215 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,495 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,499 - music_api - INFO - before_request:215 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,501 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,510 - music_api - INFO - before_request:215 - GET /_next/static/chunks/4b327841984d96fa.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,515 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,519 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,528 - music_api - INFO - before_request:215 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,533 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,562 - music_api - INFO - before_request:215 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:52:44,566 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:52:44,574 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:17,288 - music_api - INFO - __init__:90 - 音乐API服务初始化完成，下载目录: F:\Q\云音乐解析\Netease_url-main\downloads
+2026-05-13 15:54:25,654 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:25,699 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:54:25,946 - music_api - INFO - before_request:215 - GET /_next/static/chunks/a3846df6e1fc84d3.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:25,949 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:25,954 - music_api - INFO - before_request:215 - GET /_next/static/chunks/36af3800b19d11fd.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:25,957 - music_api - INFO - before_request:215 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:25,958 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:25,959 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:25,962 - music_api - INFO - before_request:215 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:25,967 - music_api - INFO - before_request:215 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:25,975 - music_api - INFO - before_request:215 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:25,975 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:25,979 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:25,985 - music_api - INFO - before_request:215 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:25,992 - music_api - INFO - before_request:215 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:25,993 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:25,996 - music_api - INFO - before_request:215 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:26,003 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:26,006 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:26,018 - music_api - INFO - before_request:215 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:26,028 - music_api - INFO - before_request:215 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:26,030 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:26,039 - music_api - INFO - before_request:215 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:26,045 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:26,051 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:26,066 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,140 - music_api - INFO - before_request:215 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,141 - music_api - INFO - after_request:230 - 响应状态: 200
+2026-05-13 15:54:35,371 - music_api - INFO - before_request:215 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,374 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,378 - music_api - INFO - before_request:215 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,382 - music_api - INFO - before_request:215 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,384 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,390 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,397 - music_api - INFO - before_request:215 - GET /_next/static/chunks/a3846df6e1fc84d3.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,409 - music_api - INFO - before_request:215 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,419 - music_api - INFO - before_request:215 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,424 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,430 - music_api - INFO - before_request:215 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,439 - music_api - INFO - before_request:215 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,445 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,448 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,455 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,462 - music_api - INFO - before_request:215 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,467 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,478 - music_api - INFO - before_request:215 - GET /_next/static/chunks/36af3800b19d11fd.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,487 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,492 - music_api - INFO - before_request:215 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,502 - music_api - INFO - before_request:215 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 15:54:35,504 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,509 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 15:54:35,514 - music_api - INFO - after_request:230 - 响应状态: 404
+2026-05-13 16:04:26,696 - music_api - INFO - __init__:91 - 音乐API服务初始化完成，下载目录: F:\Q\云音乐解析\Netease_url-main\downloads
+2026-05-13 16:04:31,778 - music_api - INFO - before_request:217 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:31,837 - music_api - INFO - after_request:232 - 响应状态: 200
+2026-05-13 16:04:32,211 - music_api - INFO - before_request:217 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,218 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,222 - music_api - INFO - before_request:217 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,228 - music_api - INFO - before_request:217 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,232 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,234 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,237 - music_api - INFO - before_request:217 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,252 - music_api - INFO - before_request:217 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,259 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,267 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,282 - music_api - INFO - before_request:217 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,272 - music_api - INFO - before_request:217 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,297 - music_api - INFO - before_request:217 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,316 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,319 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,326 - music_api - INFO - before_request:217 - GET /_next/static/chunks/dc35e28cc3861283.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,344 - music_api - INFO - before_request:217 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,347 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,369 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,374 - music_api - INFO - before_request:217 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,384 - music_api - INFO - before_request:217 - GET /_next/static/chunks/a3846df6e1fc84d3.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:32,407 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:32,422 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:33,331 - music_api - INFO - after_request:232 - 响应状态: 200
+2026-05-13 16:04:40,054 - music_api - INFO - before_request:217 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,055 - music_api - INFO - after_request:232 - 响应状态: 200
+2026-05-13 16:04:40,265 - music_api - INFO - before_request:217 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,267 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,270 - music_api - INFO - before_request:217 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,281 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,286 - music_api - INFO - before_request:217 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,291 - music_api - INFO - before_request:217 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,319 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,308 - music_api - INFO - before_request:217 - GET /_next/static/chunks/a3846df6e1fc84d3.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,300 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,327 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,335 - music_api - INFO - before_request:217 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,343 - music_api - INFO - before_request:217 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,356 - music_api - INFO - before_request:217 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,363 - music_api - INFO - before_request:217 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,367 - music_api - INFO - before_request:217 - GET /_next/static/chunks/dc35e28cc3861283.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,368 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,371 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,372 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,378 - music_api - INFO - before_request:217 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,379 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,381 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:40,393 - music_api - INFO - before_request:217 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:40,399 - music_api - INFO - after_request:232 - 响应状态: 200
+2026-05-13 16:04:40,409 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:56,852 - music_api - INFO - before_request:217 - GET / - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:56,854 - music_api - INFO - after_request:232 - 响应状态: 200
+2026-05-13 16:04:57,037 - music_api - INFO - before_request:217 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,039 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,051 - music_api - INFO - before_request:217 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,053 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,087 - music_api - INFO - before_request:217 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,091 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,159 - music_api - INFO - before_request:217 - GET /_next/static/chunks/a3846df6e1fc84d3.css - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,164 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,199 - music_api - INFO - before_request:217 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,204 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,223 - music_api - INFO - before_request:217 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,228 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,238 - music_api - INFO - before_request:217 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,249 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,280 - music_api - INFO - before_request:217 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,287 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,297 - music_api - INFO - before_request:217 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,303 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,350 - music_api - INFO - before_request:217 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,354 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,384 - music_api - INFO - before_request:217 - GET /_next/static/chunks/dc35e28cc3861283.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,403 - music_api - INFO - after_request:232 - 响应状态: 404
+2026-05-13 16:04:57,501 - music_api - INFO - before_request:217 - GET /config.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:04:57,513 - music_api - INFO - after_request:232 - 响应状态: 200
+2026-05-13 16:05:21,878 - music_api - INFO - before_request:217 - GET /search - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:05:21,880 - music_api - INFO - after_request:232 - 响应状态: 400
+2026-05-13 16:05:26,542 - music_api - INFO - before_request:217 - GET / - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:05:26,545 - music_api - INFO - after_request:232 - 响应状态: 200
+2026-05-13 16:05:26,549 - music_api - INFO - before_request:217 - GET /config.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:05:26,555 - music_api - INFO - after_request:232 - 响应状态: 200
+2026-05-13 16:10:55,879 - music_api - INFO - __init__:91 - 音乐API服务初始化完成，下载目录: F:\Q\云音乐解析\Netease_url-main\downloads
+2026-05-13 16:10:59,485 - music_api - INFO - before_request:222 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:10:59,893 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,194 - music_api - INFO - before_request:222 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,210 - music_api - INFO - before_request:222 - GET /_next/static/chunks/a3846df6e1fc84d3.css - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,218 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,229 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,241 - music_api - INFO - before_request:222 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,252 - music_api - INFO - before_request:222 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,294 - music_api - INFO - before_request:222 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,308 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,317 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,336 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,350 - music_api - INFO - before_request:222 - GET /_next/static/chunks/771dedee3f5e1621.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,406 - music_api - INFO - before_request:222 - GET /_next/static/chunks/e461e3027eb348df.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,438 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,455 - music_api - INFO - before_request:222 - GET /_next/static/chunks/turbopack-b702dda9a075337d.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,467 - music_api - INFO - before_request:222 - GET /_next/static/chunks/33d3f2c0cda968c7.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,474 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,477 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,490 - music_api - INFO - before_request:222 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,506 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,511 - music_api - INFO - before_request:222 - GET /_next/static/chunks/dc35e28cc3861283.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,522 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,557 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:00,589 - music_api - INFO - before_request:222 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:00,643 - music_api - INFO - after_request:237 - 响应状态: 304
+2026-05-13 16:11:46,333 - music_api - INFO - before_request:222 - POST /search - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:11:48,596 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:11:57,715 - music_api - INFO - before_request:222 - POST /Song_V1 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:12:06,996 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:12:15,582 - music_api - INFO - before_request:222 - GET / - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:12:15,585 - music_api - INFO - before_request:222 - GET /config.js - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:12:15,588 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:12:15,592 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:13:56,226 - music_api - INFO - before_request:222 - GET /Playlist - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:13:59,414 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:52:27,283 - music_api - INFO - __init__:91 - 音乐API服务初始化完成，下载目录: F:\Q\云音乐解析\Netease_url-main\downloads
+2026-05-13 16:52:55,466 - music_api - INFO - __init__:91 - 音乐API服务初始化完成，下载目录: F:\Q\云音乐解析\Netease_url-main\downloads
+2026-05-13 16:52:59,989 - music_api - INFO - before_request:222 - GET / - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:00,625 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:00,933 - music_api - INFO - before_request:222 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:00,942 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:00,956 - music_api - INFO - before_request:222 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:00,963 - music_api - INFO - before_request:222 - GET /_next/static/chunks/3468f447b85284a2.css - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:00,967 - music_api - INFO - before_request:222 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:00,971 - music_api - INFO - before_request:222 - GET /_next/static/chunks/1b722dc42a67f14a.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:00,973 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:00,974 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:00,980 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:00,983 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:01,028 - music_api - INFO - before_request:222 - GET /_next/static/chunks/bd95cf761201c414.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:01,032 - music_api - INFO - before_request:222 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:01,034 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:01,037 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:01,078 - music_api - INFO - before_request:222 - GET /_next/static/chunks/turbopack-31847dbe1737eb7d.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:01,084 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:01,095 - music_api - INFO - before_request:222 - GET /_next/static/chunks/8ba4941a368b35ea.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:01,106 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:01,187 - music_api - INFO - before_request:222 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:01,195 - music_api - INFO - before_request:222 - GET /_next/static/chunks/41a7d21dc9a18197.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:01,201 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:01,207 - music_api - INFO - before_request:222 - GET /aplayer.min.css - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:01,213 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:01,240 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:01,279 - music_api - INFO - before_request:222 - GET /aplayer.min.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:01,283 - music_api - INFO - before_request:222 - GET /config.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:01,287 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:01,289 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:18,285 - music_api - INFO - before_request:222 - POST /search - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:19,878 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 16:53:22,659 - music_api - INFO - before_request:222 - POST /Song_V1 - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 16:53:29,379 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:52,715 - music_api - INFO - before_request:222 - GET / - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:52,718 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:52,902 - music_api - INFO - before_request:222 - GET /_next/static/media/797e433ab948586e-s.p.dbea232f.woff2 - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:52,911 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:52,922 - music_api - INFO - before_request:222 - GET /_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2 - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:52,932 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:52,961 - music_api - INFO - before_request:222 - GET /_next/static/chunks/2473c16c0c2f6b5f.css - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:52,970 - music_api - INFO - before_request:222 - GET /_next/static/chunks/2c5db76d949de5fa.css - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:52,976 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:52,979 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,006 - music_api - INFO - before_request:222 - GET /_next/static/chunks/58c60a5fa6b544da.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,037 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,042 - music_api - INFO - before_request:222 - GET /_next/static/chunks/1b722dc42a67f14a.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,081 - music_api - INFO - before_request:222 - GET /_next/static/chunks/bd95cf761201c414.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,105 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,137 - music_api - INFO - before_request:222 - GET /_next/static/chunks/turbopack-31847dbe1737eb7d.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,149 - music_api - INFO - before_request:222 - GET /_next/static/chunks/8ba4941a368b35ea.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,154 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,158 - music_api - INFO - before_request:222 - GET /_next/static/chunks/8f161a78fdf321c0.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,178 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,181 - music_api - INFO - before_request:222 - GET /aplayer.min.css - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,186 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,197 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,230 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,265 - music_api - INFO - before_request:222 - GET /_next/static/chunks/d5b251e3dfbafec1.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,275 - music_api - INFO - before_request:222 - GET /config.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,280 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,296 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,306 - music_api - INFO - before_request:222 - GET /aplayer.min.js - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,319 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:15:53,590 - music_api - INFO - before_request:222 - GET /favicon.svg - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:15:53,597 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:16:11,504 - music_api - INFO - before_request:222 - POST /search - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:16:13,504 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:16:18,214 - music_api - INFO - before_request:222 - POST /Song_V1 - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:16:22,868 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:17:41,489 - music_api - INFO - before_request:222 - POST /Song_V1 - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:17:48,935 - music_api - INFO - after_request:237 - 响应状态: 200
+2026-05-13 17:18:22,652 - music_api - INFO - before_request:222 - POST /Download - IP: 192.168.1.13 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:150.0) Gecko/20100101 Firefox/150.0
+2026-05-13 17:19:03,358 - music_api - INFO - download_music_api:562 - 下载完成: 董小姐 [jymaster].flac
+2026-05-13 17:19:03,365 - music_api - INFO - after_request:237 - 响应状态: 200
