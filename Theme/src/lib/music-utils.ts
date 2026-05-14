@@ -146,12 +146,25 @@ export function extractAndCheckId(text: string): { id: string; type: "song" | "p
 }
 
 /**
- * Format file size from bytes to human-readable string
+ * Format file size from bytes to human-readable string.
+ * Accepts raw bytes (number or numeric string) or already-formatted strings like "8.52MB".
  */
 export function formatFileSize(bytes: string | number): string {
-  const b = typeof bytes === "string" ? parseInt(bytes, 10) : bytes;
-  if (isNaN(b) || b <= 0) return "未知";
+  if (typeof bytes === "string") {
+    // Already formatted (e.g. "8.52MB", "获取失败") — return as-is
+    if (/^\d+(\.\d+)?\s*(B|KB|MB|GB|TB)/i.test(bytes.trim())) return bytes.trim();
+    if (isNaN(Number(bytes))) return bytes; // Non-numeric string like "获取失败"
 
+    const b = Number(bytes);
+    if (b <= 0) return "未知";
+    return _formatBytes(b);
+  }
+
+  if (isNaN(bytes) || bytes <= 0) return "未知";
+  return _formatBytes(bytes);
+}
+
+function _formatBytes(b: number): string {
   const units = ["B", "KB", "MB", "GB"];
   let unitIndex = 0;
   let size = b;
