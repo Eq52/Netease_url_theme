@@ -75,7 +75,6 @@ export const QUALITY_OPTIONS = [
   { value: "jyeffect", label: "高清环绕声", desc: "环绕声" },
   { value: "sky", label: "沉浸环绕声", desc: "天空声道" },
   { value: "jymaster", label: "超清母带", desc: "母带级" },
-  { value: "dolby", label: "杜比全景声", desc: "Dolby Atmos" },
 ];
 
 /**
