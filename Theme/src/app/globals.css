@@ -253,6 +253,21 @@
   overflow: visible;
 }
 
+/* ─── Mobile responsive: hide lyrics panel, full-width info ─── */
+@media (max-width: 639px) {
+  .aplayer.aplayer-withlrc .aplayer-lrc {
+    display: none !important;
+  }
+  .aplayer.aplayer-withlrc .aplayer-info {
+    margin-left: 66px !important;
+    height: 66px !important;
+  }
+  .aplayer.aplayer-withlrc .aplayer-pic {
+    width: 66px !important;
+    height: 66px !important;
+  }
+}
+
 /* Main container */
 .aplayer {
   background: oklch(0.16 0.02 280 / 70%) !important;

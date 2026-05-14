@@ -22,20 +22,34 @@ interface APlayerComponentProps {
 }
 
 /**
- * Convert LyricLine[] to LRC format string for APlayer
+ * Convert LyricLine[] to LRC format string for APlayer.
+ *
+ * APlayer scrolls so the *last* line with `aplayer-lrc-current` is
+ * vertically centered.  When both an original and its translation share
+ * the exact same timestamp, the translation ends up last and gets
+ * centered, pushing the original out of view.
+ *
+ * Fix: give the translation a tiny positive offset (+30 ms) so it is
+ * considered "later".  The original remains at the exact timestamp and
+ * becomes the last current line → centered in view.
  */
 function lyricsToLrc(lines: LyricLine[]): string {
+  const OFFSET_S = 0.03; // 30 ms
+
+  const fmtTime = (t: number) => {
+    const m = Math.floor(t / 60);
+    const s = Math.floor(t % 60);
+    const ms = Math.round((t % 1) * 100);
+    return `[${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms.toString().padStart(2, "0")}]`;
+  };
+
   return lines
     .map((line) => {
-      const min = Math.floor(line.time / 60);
-      const sec = Math.floor(line.time % 60);
-      const ms = Math.round((line.time % 1) * 100);
-      const timeTag = `[${min.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}.${ms.toString().padStart(2, "0")}]`;
-      let result = `${timeTag}${line.text}`;
       if (line.translation) {
-        result += `\n${timeTag}${line.translation}`;
+        // Original at exact time → translation 30 ms later
+        return `${fmtTime(line.time)}${line.text}\n${fmtTime(line.time + OFFSET_S)}${line.translation}`;
       }
-      return result;
+      return `${fmtTime(line.time)}${line.text}`;
     })
     .join("\n");
 }
