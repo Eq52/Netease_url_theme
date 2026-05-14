@@ -191,3 +191,8 @@ export async function getAlbum(id: string): Promise<ApiResponse<AlbumData>> {
 export async function downloadSong(id: string, quality: string = "exhigh"): Promise<ApiResponse<Blob>> {
   return apiRequest<Blob>("Download", "POST", { id, quality });
 }
+
+/** Parse a song and return detail — used by player context */
+export async function parseSong(id: string, level: string = "exhigh"): Promise<ApiResponse<SongDetail>> {
+  return apiRequest<SongDetail>("Song_V1", "POST", { url: id, level, type: "json" });
+}
