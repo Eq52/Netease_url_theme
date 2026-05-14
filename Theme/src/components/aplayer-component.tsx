@@ -24,14 +24,15 @@ interface APlayerComponentProps {
 /**
  * Convert LyricLine[] to LRC format string for APlayer.
  *
- * APlayer scrolls so the *last* line with `aplayer-lrc-current` is
+ * APlayer scrolls so the *last* <p> with `aplayer-lrc-current` is
  * vertically centered.  When both an original and its translation share
- * the exact same timestamp, the translation ends up last and gets
- * centered, pushing the original out of view.
+ * the exact same timestamp, whichever appears last in the DOM gets
+ * centered — pushing the other out of view.
  *
- * Fix: give the translation a tiny positive offset (+30 ms) so it is
- * considered "later".  The original remains at the exact timestamp and
- * becomes the last current line → centered in view.
+ * Fix: output the **translation first** (at exact time), then the
+ * **original 30 ms later**.  APlayer marks both as current, but the
+ * original — being the last current element — is the one that gets
+ * scrolled into the center.
  */
 function lyricsToLrc(lines: LyricLine[]): string {
   const OFFSET_S = 0.03; // 30 ms
@@ -46,8 +47,8 @@ function lyricsToLrc(lines: LyricLine[]): string {
   return lines
     .map((line) => {
       if (line.translation) {
-        // Original at exact time → translation 30 ms later
-        return `${fmtTime(line.time)}${line.text}\n${fmtTime(line.time + OFFSET_S)}${line.translation}`;
+        // Translation at exact time → original 30 ms later (so original is last → centered)
+        return `${fmtTime(line.time)}${line.translation}\n${fmtTime(line.time + OFFSET_S)}${line.text}`;
       }
       return `${fmtTime(line.time)}${line.text}`;
     })
@@ -88,13 +89,17 @@ export default function APlayerComponent({
     prevSrcRef.current = url;
 
     // Process lyrics
-    let processedLrc: string;
-    if (tlyric) {
-      const merged = lrctran(lyric, tlyric);
-      processedLrc = lyricsToLrc(merged);
-    } else {
-      // Convert raw LRC directly
-      processedLrc = lyric;
+    let processedLrc: string = "";
+    // On mobile (< 640px), skip lyrics entirely to avoid overlap/crowding
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
+    if (!isMobile) {
+      if (tlyric) {
+        const merged = lrctran(lyric, tlyric);
+        processedLrc = lyricsToLrc(merged);
+      } else {
+        processedLrc = lyric;
+      }
     }
 
     // Wait for APlayer to be available
