@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[97367,["/_next/static/chunks/8f161a78fdf321c0.js","/_next/static/chunks/8ba4941a368b35ea.js"],"ViewportBoundary"]
+3:I[97367,["/_next/static/chunks/8f161a78fdf321c0.js","/_next/static/chunks/8ba4941a368b35ea.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+5:I[27201,["/_next/static/chunks/8f161a78fdf321c0.js","/_next/static/chunks/8ba4941a368b35ea.js"],"IconMark"]
+0:{"buildId":"HowpbOernK6KVay-MhrMm","rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"网易云音乐工具箱"}],["$","meta","1",{"name":"description","content":"网易云音乐在线工具箱 - 歌曲搜索、解析、下载，歌单与专辑解析"}],["$","meta","2",{"name":"keywords","content":"网易云音乐,音乐下载,歌单解析,专辑解析,在线工具"}],["$","link","3",{"rel":"icon","href":"/favicon.svg"}],["$","$L5","4",{}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"loading":null,"isPartial":false}
