@@ -34,6 +34,35 @@ function blobDownload(url: string, body: Record<string, unknown>, filename: stri
     body: JSON.stringify(body),
   }).then(res => {
     if (!res.ok) throw new Error(`Download Error: ${res.status}`);
+
+    // Try to extract extension from Content-Disposition header
+    const disposition = res.headers.get('Content-Disposition') || '';
+    const extMatch = disposition.match(/filename=.*\.(\w+)/);
+    if (extMatch) {
+      const ext = extMatch[1];
+      const baseName = filename.replace(/\.\w+$/, '');
+      filename = `${baseName}.${ext}`;
+    } else {
+      // Fallback: try Content-Type
+      const contentType = res.headers.get('Content-Type') || '';
+      const mimeToExt: Record<string, string> = {
+        'audio/mpeg': 'mp3',
+        'audio/flac': 'flac',
+        'audio/mp4': 'm4a',
+        'audio/x-m4a': 'm4a',
+        'audio/wav': 'wav',
+        'audio/ogg': 'ogg',
+        'audio/aac': 'aac',
+      };
+      for (const [mime, ext] of Object.entries(mimeToExt)) {
+        if (contentType.includes(mime)) {
+          const baseName = filename.replace(/\.\w+$/, '');
+          filename = `${baseName}.${ext}`;
+          break;
+        }
+      }
+    }
+
     return res.blob();
   }).then(blob => {
     const downloadUrl = window.URL.createObjectURL(blob);
@@ -71,7 +100,7 @@ export const api = {
     }),
 
   downloadSong: (id: string, quality: string, name?: string, artist?: string) => {
-    const filename = (name && artist) ? `${sanitizeFilename(name)}-${sanitizeFilename(artist)}.mp3` : 'download.mp3';
+    const filename = (name && artist) ? `${sanitizeFilename(name)}-${sanitizeFilename(artist)}` : 'download';
     return blobDownload('/Download', { id, quality }, filename);
   },
 
