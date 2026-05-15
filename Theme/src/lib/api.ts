@@ -110,7 +110,7 @@ export const api = {
     }),
 
   getPlaylist: (id: string) =>
-    fetchApi<{ data: { playlist: { id: number; name: string; coverImgUrl: string; creator: { nickname: string; avatarUrl: string }; trackCount: number; description: string; tracks: Array<{ id: number; name: string; artists: string; album: string; picUrl: string }> } } }>(`/Playlist?id=${id}`, {
+    fetchApi<import('./types').PlaylistData>(`/Playlist?id=${id}`, {
       method: 'GET',
     }),
 

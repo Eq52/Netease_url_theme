@@ -123,7 +123,7 @@ export function FullPlayer() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <div className={`w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden shadow-2xl ${isPlaying ? 'animate-spin-slow' : 'animate-spin-slow paused'}`}>
+                  <div className={`w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden shadow-2xl ${isPlaying && !isLoading ? 'animate-spin-slow' : 'animate-spin-slow paused'}`}>
                     <img
                       src={coverUrl}
                       alt={currentSong.name}
@@ -136,10 +136,16 @@ export function FullPlayer() {
                   <div className="absolute inset-0 rounded-full gold-glow-lg pointer-events-none" />
                   {/* Center hole */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-black border-4 border-surface" />
+                  {/* Loading overlay */}
+                  {isLoading && (
+                    <div className="absolute inset-0 rounded-full bg-black/50 flex items-center justify-center">
+                      <div className="w-10 h-10 border-3 border-gold border-t-transparent rounded-full animate-spin" />
+                    </div>
+                  )}
                 </motion.div>
               ) : (
                 /* Lyrics Display */
-                <div ref={lyricsContainerRef} className="w-full h-64 sm:h-72 overflow-hidden">
+                <div ref={lyricsContainerRef} className="w-full h-64 sm:h-72 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_75%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_75%,transparent_100%)]">
                   <div className="h-full flex flex-col items-center justify-center">
                     {lyrics.length === 0 ? (
                       <p className="text-muted-foreground text-sm">暂无歌词</p>

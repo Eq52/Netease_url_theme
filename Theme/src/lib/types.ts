@@ -43,10 +43,7 @@ export interface PlaylistData {
       id: number;
       name: string;
       coverImgUrl: string;
-      creator: {
-        nickname: string;
-        avatarUrl: string;
-      };
+      creator: string | { nickname: string; avatarUrl: string };
       trackCount: number;
       description: string;
       tracks: Song[];

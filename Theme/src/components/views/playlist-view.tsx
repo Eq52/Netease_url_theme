@@ -14,7 +14,7 @@ interface PlaylistInfo {
   id: number;
   name: string;
   coverImgUrl: string;
-  creator: { nickname: string; avatarUrl: string };
+  creator: string;
   trackCount: number;
   description: string;
   tracks: QueueItem[];
@@ -62,7 +62,7 @@ export function PlaylistView() {
         id: pl.id,
         name: pl.name,
         coverImgUrl: pl.coverImgUrl,
-        creator: pl.creator,
+        creator: typeof pl.creator === 'string' ? pl.creator : pl.creator?.nickname || '未知',
         trackCount: pl.trackCount,
         description: pl.description,
         tracks,
@@ -176,7 +176,7 @@ export function PlaylistView() {
                   {playlist.name}
                 </h2>
                 <p className="text-sm text-gold/80 mb-1">
-                  by {playlist.creator?.nickname || '未知'}
+                  by {playlist.creator}
                 </p>
                 <p className="text-xs text-muted-foreground">
                   {playlist.trackCount} 首歌曲
