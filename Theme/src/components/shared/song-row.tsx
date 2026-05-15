@@ -81,7 +81,7 @@ export function SongRow({ song, index, queue, showIndex = true }: SongRowProps) 
       </div>
 
       {/* Album */}
-      <div className="hidden sm:block flex-1 min-w-0">
+      <div className="block flex-1 min-w-0">
         <p className="text-xs text-muted-foreground truncate text-right">
           {song.album}
         </p>

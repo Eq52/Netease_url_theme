@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useNavStore } from '@/lib/stores/nav-store';
 import { usePlayerStore } from '@/lib/stores/player-store';
 import { Sidebar } from './sidebar';
-import { TabBar } from './tab-bar';
+import { ScreenGuard } from './screen-guard';
 import { SearchView } from '@/components/views/search-view';
 import { PlaylistView } from '@/components/views/playlist-view';
 import { AlbumView } from '@/components/views/album-view';
@@ -35,38 +35,36 @@ export function AppShell() {
   const hasSong = !!currentSong;
 
   return (
-    <div className="min-h-screen bg-background flex overflow-hidden">
-      <Sidebar />
+    <ScreenGuard>
+      <div className="min-h-screen bg-background flex overflow-hidden">
+        <Sidebar />
 
-      <main
-        className="flex-1 min-w-0 md:ml-16 flex flex-col overflow-y-auto overflow-x-hidden transition-all duration-300"
-        style={{
-          paddingBottom: hasSong ? '80px' : undefined,
-        }}
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeView}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="flex-1 min-w-0"
-          >
-            <ActiveComponent />
-          </motion.div>
-        </AnimatePresence>
+        <main
+          className="flex-1 min-w-0 ml-16 flex flex-col overflow-y-auto overflow-x-hidden transition-all duration-300"
+          style={{
+            paddingBottom: hasSong ? '80px' : undefined,
+          }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeView}
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="flex-1 min-w-0"
+            >
+              <ActiveComponent />
+            </motion.div>
+          </AnimatePresence>
+        </main>
 
-        {/* Mobile bottom spacer for tab bar */}
-        <div className="h-14 md:hidden" />
-      </main>
+        <APlayerWrapper />
 
-      <TabBar />
-      <APlayerWrapper />
-
-      {hasSong && <MiniPlayer />}
-      <FullPlayer />
-    </div>
+        {hasSong && <MiniPlayer />}
+        <FullPlayer />
+      </div>
+    </ScreenGuard>
   );
 }

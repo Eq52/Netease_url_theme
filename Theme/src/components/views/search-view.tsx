@@ -48,10 +48,10 @@ export function SearchView() {
   }, [handleSearch]);
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 max-w-6xl mx-auto w-full">
+    <div className="p-6 lg:p-8 max-w-6xl mx-auto w-full">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">
+        <h1 className="text-3xl font-bold text-white mb-1">
           搜索音乐
         </h1>
         <p className="text-sm text-muted-foreground">
@@ -118,7 +118,7 @@ export function SearchView() {
           <p className="text-sm text-muted-foreground mb-4">
             找到 <span className="text-gold font-medium">{results.length}</span> 首歌曲
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-3 lg:grid-cols-4 gap-4">
             {results.map((song, index) => (
               <motion.div
                 key={song.id}

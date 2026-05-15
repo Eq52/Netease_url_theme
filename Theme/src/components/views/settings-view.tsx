@@ -73,10 +73,10 @@ export function SettingsView() {
   }
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 max-w-2xl mx-auto w-full">
+    <div className="p-6 lg:p-8 max-w-2xl mx-auto w-full">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">
+        <h1 className="text-3xl font-bold text-white mb-1">
           设置
         </h1>
         <p className="text-sm text-muted-foreground">

@@ -16,7 +16,7 @@ export function Sidebar() {
   const { activeView, navigate } = useNavStore();
 
   return (
-    <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-16 hover:w-56 flex-col items-center py-6 z-40 glass-dark transition-all duration-300 group overflow-hidden">
+    <aside className="flex fixed left-0 top-0 bottom-0 w-16 hover:w-56 flex-col items-center py-6 z-40 glass-dark transition-all duration-300 group overflow-hidden">
       {/* Logo */}
       <div className="flex items-center gap-3 mb-8 px-4 w-full">
         <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gold flex items-center justify-center">

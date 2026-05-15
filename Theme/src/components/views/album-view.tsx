@@ -91,10 +91,10 @@ export function AlbumView() {
   };
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 max-w-4xl mx-auto w-full">
+    <div className="p-6 lg:p-8 max-w-4xl mx-auto w-full">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">
+        <h1 className="text-3xl font-bold text-white mb-1">
           专辑
         </h1>
         <p className="text-sm text-muted-foreground">
@@ -160,8 +160,8 @@ export function AlbumView() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
 
-            <div className="relative flex gap-5 p-5 md:p-6">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden flex-shrink-0 shadow-xl">
+            <div className="relative flex gap-5 p-6">
+              <div className="w-40 h-40 rounded-xl overflow-hidden flex-shrink-0 shadow-xl">
                 <img
                   src={album.coverImgUrl}
                   alt={album.name}
@@ -173,7 +173,7 @@ export function AlbumView() {
               </div>
 
               <div className="flex flex-col justify-end min-w-0">
-                <h2 className="text-xl md:text-2xl font-bold text-white mb-2 line-clamp-2">
+                <h2 className="text-2xl font-bold text-white mb-2 line-clamp-2">
                   {album.name}
                 </h2>
                 <p className="text-sm text-gold/80 mb-1">

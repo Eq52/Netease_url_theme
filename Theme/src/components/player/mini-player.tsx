@@ -15,6 +15,7 @@ export function MiniPlayer() {
   const {
     currentSong,
     isPlaying,
+    isLoading,
     currentTime,
     duration,
     volume,
@@ -47,8 +48,7 @@ export function MiniPlayer() {
       initial={{ y: 80 }}
       animate={{ y: 0 }}
       exit={{ y: 80 }}
-      className="fixed bottom-0 left-0 right-0 md:left-16 z-50 glass-gold"
-      style={{ marginBottom: 'env(safe-area-inset-bottom)' }}
+      className="fixed bottom-0 left-16 right-0 z-50 glass-gold"
     >
       {/* Progress bar at top */}
       <div
@@ -63,8 +63,8 @@ export function MiniPlayer() {
         />
       </div>
 
-      <div className="flex items-center gap-3 px-3 py-2 md:px-4 md:py-2.5">
-        {/* Expand button (mobile) / Cover art */}
+      <div className="flex items-center gap-3 px-4 py-2.5">
+        {/* Cover art */}
         <button
           onClick={() => setShowFullPlayer(true)}
           className="relative w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 hover:opacity-80 transition-opacity"
@@ -77,13 +77,15 @@ export function MiniPlayer() {
               (e.target as HTMLImageElement).src = '/logo.png';
             }}
           />
-          <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-            <ChevronUp className="w-4 h-4 text-white" />
-          </div>
+          {isLoading && (
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <div className="w-4 h-4 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+            </div>
+          )}
         </button>
 
         {/* Song info */}
-        <div className="flex-1 min-w-0 hidden sm:block">
+        <div className="flex-1 min-w-0">
           <h4 className="text-sm font-medium text-white truncate">
             {currentSong.name}
           </h4>
@@ -92,26 +94,18 @@ export function MiniPlayer() {
           </p>
         </div>
 
-        {/* Mobile song info (between cover and controls) */}
-        <div className="flex-1 min-w-0 sm:hidden">
-          <h4 className="text-xs font-medium text-white truncate">
-            {currentSong.name}
-          </h4>
-        </div>
-
         {/* Time display */}
-        <div className="hidden md:flex items-center gap-2 text-[11px] text-muted-foreground">
+        <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
           <span>{formatTime(currentTime)}</span>
           <span>/</span>
           <span>{formatTime(duration)}</span>
         </div>
 
         {/* Controls */}
-        <div className="flex items-center gap-1 md:gap-2">
-          {/* Volume toggle (desktop) */}
+        <div className="flex items-center gap-2">
           <button
             onClick={toggleMute}
-            className="hidden md:flex w-8 h-8 items-center justify-center rounded-full text-muted-foreground hover:text-gold transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-full text-muted-foreground hover:text-gold transition-colors"
           >
             {isMuted || volume === 0 ? (
               <VolumeX className="w-4 h-4" />
@@ -129,9 +123,12 @@ export function MiniPlayer() {
 
           <button
             onClick={togglePlay}
+            disabled={isLoading}
             className="w-10 h-10 rounded-full bg-gold flex items-center justify-center text-black hover:bg-gold-light transition-colors gold-glow-sm"
           >
-            {isPlaying ? (
+            {isLoading ? (
+              <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+            ) : isPlaying ? (
               <Pause className="w-5 h-5" fill="black" />
             ) : (
               <Play className="w-5 h-5 ml-0.5" fill="black" />

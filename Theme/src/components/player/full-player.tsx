@@ -95,7 +95,7 @@ export function FullPlayer() {
           {/* Content */}
           <div className="relative flex flex-col h-full max-w-lg mx-auto w-full">
             {/* Header */}
-            <div className="flex items-center justify-between px-4 pt-12 pb-2 md:pt-8">
+            <div className="flex items-center justify-between px-4 pt-8 pb-2">
               <button
                 onClick={() => setShowFullPlayer(false)}
                 className="w-10 h-10 flex items-center justify-center rounded-full text-white/70 hover:text-white transition-colors"
@@ -123,7 +123,7 @@ export function FullPlayer() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <div className={`w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden shadow-2xl ${isPlaying && !isLoading ? 'animate-spin-slow' : 'animate-spin-slow paused'}`}>
+                  <div className={`w-72 h-72 rounded-full overflow-hidden shadow-2xl ${isPlaying && !isLoading ? 'animate-spin-slow' : 'animate-spin-slow paused'}`}>
                     <img
                       src={coverUrl}
                       alt={currentSong.name}
@@ -145,24 +145,24 @@ export function FullPlayer() {
                 </motion.div>
               ) : (
                 /* Lyrics Display */
-                <div ref={lyricsContainerRef} className="w-full h-64 sm:h-72 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_75%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_75%,transparent_100%)]">
-                  <div className="h-full flex flex-col items-center justify-center">
+                <div ref={lyricsContainerRef} className="w-full h-64 h-72 overflow-y-auto scroll-smooth [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_75%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_75%,transparent_100%)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  <div className="flex flex-col items-center justify-center min-h-full py-32 px-4">
                     {lyrics.length === 0 ? (
                       <p className="text-muted-foreground text-sm">暂无歌词</p>
                     ) : (
-                      <div className="space-y-4 py-32 px-2">
+                      <div className="w-full space-y-4">
                         {lyrics.map((line, i) => (
                           <div
                             key={i}
                             data-lyric-index={i}
-                            className={`text-center transition-all duration-300 break-words ${
+                            className={`text-center transition-all duration-300 break-words leading-relaxed ${
                               i === currentLyricIndex
                                 ? 'text-white scale-105'
                                 : 'text-muted-foreground/50 scale-100'
                             }`}
                             style={{ fontSize: `${lyricsFontSize}px` }}
                           >
-                            <p className="leading-relaxed">{line.text}</p>
+                            <p>{line.text}</p>
                             {line.translation && (
                               <p className="text-gold/60 mt-1 break-words" style={{ fontSize: `${Math.max(lyricsFontSize - 3, 11)}px` }}>
                                 {line.translation}
@@ -193,7 +193,7 @@ export function FullPlayer() {
             </div>
 
             {/* Controls */}
-            <div className="px-6 pb-12 md:pb-8 space-y-4">
+            <div className="px-6 pb-8 space-y-4">
               {/* Progress */}
               <div className="space-y-2">
                 <div
