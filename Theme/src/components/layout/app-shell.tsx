@@ -35,11 +35,11 @@ export function AppShell() {
   const hasSong = !!currentSong;
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-background flex overflow-hidden">
       <Sidebar />
 
       <main
-        className="flex-1 md:ml-16 flex flex-col transition-all duration-300"
+        className="flex-1 min-w-0 md:ml-16 flex flex-col overflow-y-auto overflow-x-hidden transition-all duration-300"
         style={{
           paddingBottom: hasSong ? '80px' : undefined,
         }}
@@ -52,7 +52,7 @@ export function AppShell() {
             animate="animate"
             exit="exit"
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="flex-1"
+            className="flex-1 min-w-0"
           >
             <ActiveComponent />
           </motion.div>

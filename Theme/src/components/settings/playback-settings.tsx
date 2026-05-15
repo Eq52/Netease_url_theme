@@ -32,12 +32,12 @@ export function PlaybackSettings() {
 
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
         {/* Auto Play Next */}
-        <div className="flex items-center justify-between p-4 rounded-xl bg-surface-card">
-          <div className="flex items-center gap-3">
-            <PlayCircle className="w-5 h-5 text-gold" />
-            <div>
+        <div className="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface-card">
+          <div className="flex items-center gap-3 min-w-0">
+            <PlayCircle className="w-5 h-5 text-gold flex-shrink-0" />
+            <div className="min-w-0">
               <p className="text-sm font-medium text-white">自动播放下一首</p>
-              <p className="text-xs text-muted-foreground mt-0.5">
+              <p className="text-xs text-muted-foreground mt-0.5 break-words">
                 当前歌曲结束后自动播放队列中的下一首
               </p>
             </div>
@@ -45,14 +45,15 @@ export function PlaybackSettings() {
           <Switch
             checked={autoPlayNext}
             onCheckedChange={(checked) => updateSetting('autoPlayNext', checked)}
+            className="flex-shrink-0"
           />
         </div>
 
         {/* Default Volume */}
         <div className="p-4 rounded-xl bg-surface-card space-y-4">
-          <div className="flex items-center gap-3">
-            <Volume2 className="w-5 h-5 text-gold" />
-            <div>
+          <div className="flex items-center gap-3 min-w-0">
+            <Volume2 className="w-5 h-5 text-gold flex-shrink-0" />
+            <div className="min-w-0">
               <p className="text-sm font-medium text-white">默认音量</p>
               <p className="text-xs text-muted-foreground mt-0.5">
                 设置初始播放音量: {defaultVolume}%
@@ -69,12 +70,12 @@ export function PlaybackSettings() {
         </div>
 
         {/* Show Lyrics */}
-        <div className="flex items-center justify-between p-4 rounded-xl bg-surface-card">
-          <div className="flex items-center gap-3">
-            <Type className="w-5 h-5 text-gold" />
-            <div>
+        <div className="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface-card">
+          <div className="flex items-center gap-3 min-w-0">
+            <Type className="w-5 h-5 text-gold flex-shrink-0" />
+            <div className="min-w-0">
               <p className="text-sm font-medium text-white">显示歌词</p>
-              <p className="text-xs text-muted-foreground mt-0.5">
+              <p className="text-xs text-muted-foreground mt-0.5 break-words">
                 在全屏播放器中显示歌词
               </p>
             </div>
@@ -82,6 +83,7 @@ export function PlaybackSettings() {
           <Switch
             checked={showLyrics}
             onCheckedChange={(checked) => updateSetting('showLyrics', checked)}
+            className="flex-shrink-0"
           />
         </div>
 
@@ -90,11 +92,11 @@ export function PlaybackSettings() {
           'p-4 rounded-xl bg-surface-card space-y-4 transition-opacity',
           !showLyrics && 'opacity-40 pointer-events-none'
         )}>
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 text-gold font-bold flex items-center justify-center text-xs">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-5 h-5 text-gold font-bold flex items-center justify-center text-xs flex-shrink-0">
               A
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-sm font-medium text-white">歌词字体大小</p>
               <p className="text-xs text-muted-foreground mt-0.5">
                 当前: {lyricsFontSize}px

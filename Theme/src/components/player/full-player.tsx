@@ -150,12 +150,12 @@ export function FullPlayer() {
                     {lyrics.length === 0 ? (
                       <p className="text-muted-foreground text-sm">暂无歌词</p>
                     ) : (
-                      <div className="space-y-4 py-32">
+                      <div className="space-y-4 py-32 px-2">
                         {lyrics.map((line, i) => (
                           <div
                             key={i}
                             data-lyric-index={i}
-                            className={`text-center transition-all duration-300 ${
+                            className={`text-center transition-all duration-300 break-words ${
                               i === currentLyricIndex
                                 ? 'text-white scale-105'
                                 : 'text-muted-foreground/50 scale-100'
@@ -164,7 +164,7 @@ export function FullPlayer() {
                           >
                             <p className="leading-relaxed">{line.text}</p>
                             {line.translation && (
-                              <p className="text-gold/60 mt-1" style={{ fontSize: `${Math.max(lyricsFontSize - 3, 11)}px` }}>
+                              <p className="text-gold/60 mt-1 break-words" style={{ fontSize: `${Math.max(lyricsFontSize - 3, 11)}px` }}>
                                 {line.translation}
                               </p>
                             )}

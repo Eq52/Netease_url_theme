@@ -105,6 +105,11 @@
     background-color: #0a0a0a;
     color: #ffffff;
   }
+  /* Prevent horizontal overflow on all elements */
+  img, svg, video, canvas {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* Gold Glow Effects */

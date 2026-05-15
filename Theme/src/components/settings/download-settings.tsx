@@ -81,12 +81,12 @@ export function DownloadSettings() {
         </div>
 
         {/* Auto Download */}
-        <div className="flex items-center justify-between p-4 rounded-xl bg-surface-card">
-          <div className="flex items-center gap-3">
-            <Download className="w-5 h-5 text-gold" />
-            <div>
+        <div className="flex items-center justify-between gap-3 p-4 rounded-xl bg-surface-card">
+          <div className="flex items-center gap-3 min-w-0">
+            <Download className="w-5 h-5 text-gold flex-shrink-0" />
+            <div className="min-w-0">
               <p className="text-sm font-medium text-white">自动下载</p>
-              <p className="text-xs text-muted-foreground mt-0.5">
+              <p className="text-xs text-muted-foreground mt-0.5 break-words">
                 播放歌曲时自动下载
               </p>
             </div>
@@ -94,13 +94,14 @@ export function DownloadSettings() {
           <Switch
             checked={autoDownload}
             onCheckedChange={(checked) => updateSetting('autoDownload', checked)}
+            className="flex-shrink-0"
           />
         </div>
 
         {/* Downloads Directory */}
         <div className="p-4 rounded-xl bg-surface-card space-y-2">
-          <div className="flex items-center gap-3">
-            <FolderOpen className="w-5 h-5 text-gold" />
+          <div className="flex items-center gap-3 min-w-0">
+            <FolderOpen className="w-5 h-5 text-gold flex-shrink-0" />
             <div>
               <p className="text-sm font-medium text-white">下载目录</p>
               <p className="text-xs text-muted-foreground font-mono mt-1 break-all">
