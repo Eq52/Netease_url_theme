@@ -1,312 +1,268 @@
-"use client";
+'use client';
 
-import React, { useRef, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useEffect, useCallback, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ChevronDown, Play, Pause, SkipBack, SkipForward,
-  Volume2, VolumeX, Download, Repeat
-} from "lucide-react";
-import { usePlayer } from "@/lib/player-context";
-import { formatTime } from "@/lib/music-utils";
-import { Slider } from "@/components/ui/slider";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { QUALITY_OPTIONS } from "@/lib/api";
-import type { APlayerWrapperRef } from "./aplayer-wrapper";
+  Play, Pause, SkipBack, SkipForward,
+  X, Download, Volume2, VolumeX,
+  ChevronDown
+} from 'lucide-react';
+import { usePlayerStore } from '@/lib/stores/player-store';
+import { useSettingsStore } from '@/lib/stores/settings-store';
+import { api } from '@/lib/api';
+import { formatTime } from '@/lib/music-utils';
+import { Slider } from '@/components/ui/slider';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
-interface FullPlayerProps {
-  aplayerRef: React.RefObject<APlayerWrapperRef | null>;
-}
-
-export default function FullPlayer({ aplayerRef }: FullPlayerProps) {
+export function FullPlayer() {
   const {
     currentSong,
     isPlaying,
     currentTime,
     duration,
+    volume,
+    isMuted,
+    lyrics,
+    currentLyricIndex,
     showFullPlayer,
-    setShowFullPlayer,
+    isLoading,
     togglePlay,
     playNext,
     playPrev,
-    quality,
-    setQuality,
-    lyrics,
-    currentLyricIndex,
-    downloadCurrentSong,
-  } = usePlayer();
+    seek,
+    setVolume,
+    toggleMute,
+    setShowFullPlayer,
+  } = usePlayerStore();
 
-  const [volume, setVolume] = React.useState(80);
-  const [isMuted, setIsMuted] = React.useState(false);
-  const lyricsRef = useRef<HTMLDivElement>(null);
+  const { showLyrics, lyricsFontSize } = useSettingsStore();
+  const progressRef = useRef<HTMLDivElement>(null);
+  const lyricsContainerRef = useRef<HTMLDivElement>(null);
 
-  // Sync volume
+  const handleProgressClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!progressRef.current || !duration) return;
+    const rect = progressRef.current.getBoundingClientRect();
+    const percent = (e.clientX - rect.left) / rect.width;
+    seek(percent * duration);
+  }, [duration, seek]);
+
+  // Auto scroll lyrics
   useEffect(() => {
-    if (aplayerRef.current) {
-      aplayerRef.current.setVolume(isMuted ? 0 : volume / 100);
-    }
-  }, [volume, isMuted, aplayerRef]);
-
-  // Auto-scroll lyrics
-  useEffect(() => {
-    if (!lyricsRef.current || currentLyricIndex < 0) return;
-    const activeEl = lyricsRef.current.querySelector(`[data-lyric-index="${currentLyricIndex}"]`);
-    if (activeEl) {
-      activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (!lyricsContainerRef.current || currentLyricIndex < 0) return;
+    const container = lyricsContainerRef.current;
+    const activeLine = container.querySelector(`[data-lyric-index="${currentLyricIndex}"]`);
+    if (activeLine) {
+      activeLine.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
     }
   }, [currentLyricIndex]);
 
-  // Find current and nearby lyrics for display
-  const displayLyrics = useMemo(() => {
-    if (lyrics.length === 0) return [];
-    return lyrics;
-  }, [lyrics]);
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-  if (!currentSong) return null;
+  const coverUrl = useMemo(() => currentSong?.pic || '/logo.svg', [currentSong?.pic]);
 
-  const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
-
-  const handleSeek = (value: number[]) => {
-    if (duration <= 0) return;
-    const newTime = (value[0] / 100) * duration;
-    if (aplayerRef.current) {
-      aplayerRef.current.seek(newTime);
+  const handleDownload = useCallback(async () => {
+    if (!currentSong) return;
+    const { downloadQuality } = useSettingsStore.getState();
+    try {
+      await api.downloadSong(currentSong.id, downloadQuality);
+    } catch (err) {
+      console.error('Download failed:', err);
     }
-  };
+  }, [currentSong]);
 
   return (
     <AnimatePresence>
       {showFullPlayer && currentSong && (
         <motion.div
-          initial={{ y: "100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "100%" }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed inset-0 z-50 flex flex-col"
+          initial={{ opacity: 0, y: '100%' }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: '100%' }}
+          transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+          className="fixed inset-0 z-[100] flex flex-col"
         >
           {/* Blurred background */}
-          <div
-            className="full-player-bg"
-            style={{
-              backgroundImage: currentSong.pic ? `url(${currentSong.pic})` : undefined,
-            }}
-          />
-          <div className="absolute inset-0 bg-background/80" />
+          <div className="absolute inset-0 overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center scale-150 blur-[80px] opacity-30"
+              style={{ backgroundImage: `url(${coverUrl})` }}
+            />
+            <div className="absolute inset-0 bg-black/70" />
+          </div>
 
           {/* Content */}
-          <div className="relative z-10 flex flex-col h-full">
+          <div className="relative flex flex-col h-full max-w-lg mx-auto w-full">
             {/* Header */}
-            <div className="flex items-center justify-between px-4 md:px-8 pt-4 pb-2 shrink-0">
+            <div className="flex items-center justify-between px-4 pt-12 pb-2 md:pt-8">
               <button
                 onClick={() => setShowFullPlayer(false)}
-                className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                className="w-10 h-10 flex items-center justify-center rounded-full text-white/70 hover:text-white transition-colors"
               >
-                <ChevronDown className="h-6 w-6" />
+                <ChevronDown className="w-6 h-6" />
               </button>
               <div className="text-center">
-                <p className="text-xs uppercase tracking-wider text-muted-foreground">正在播放</p>
+                <p className="text-[11px] text-gold uppercase tracking-widest font-medium">正在播放</p>
               </div>
-              <div className="w-10" /> {/* Spacer for centering */}
+              <button
+                onClick={handleDownload}
+                className="w-10 h-10 flex items-center justify-center rounded-full text-white/70 hover:text-gold transition-colors"
+              >
+                <Download className="w-5 h-5" />
+              </button>
             </div>
 
-            {/* Main content - scrollable */}
-            <div className="flex-1 overflow-y-auto px-4 md:px-8">
-              <div className="max-w-2xl mx-auto flex flex-col items-center">
-                {/* Album art */}
+            {/* Cover art & Lyrics area */}
+            <div className="flex-1 flex flex-col items-center justify-center px-6 gap-6 overflow-hidden">
+              {/* Cover Art */}
+              {!showLyrics ? (
                 <motion.div
+                  className="relative"
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.1, duration: 0.3 }}
-                  className="relative mb-6 md:mb-8"
+                  transition={{ delay: 0.1 }}
                 >
-                  <div className="w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden shadow-2xl music-glow-strong">
+                  <div className={`w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden shadow-2xl ${isPlaying ? 'animate-spin-slow' : 'animate-spin-slow paused'}`}>
                     <img
-                      src={currentSong.pic || ""}
+                      src={coverUrl}
                       alt={currentSong.name}
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src =
-                          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23333' width='100' height='100'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='%23666' font-size='28'%3E♪%3C/text%3E%3C/svg%3E";
+                        (e.target as HTMLImageElement).src = '/logo.svg';
                       }}
                     />
                   </div>
+                  <div className="absolute inset-0 rounded-full gold-glow-lg pointer-events-none" />
+                  {/* Center hole */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-black border-4 border-surface" />
                 </motion.div>
-
-                {/* Song info */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.3 }}
-                  className="text-center mb-6 w-full"
-                >
-                  <h2 className="text-xl md:text-2xl font-bold truncate">{currentSong.name}</h2>
-                  <p className="text-sm text-muted-foreground mt-1 truncate">
-                    {currentSong.ar_name} · {currentSong.al_name}
-                  </p>
-                </motion.div>
-
-                {/* Progress bar */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="w-full mb-4"
-                >
-                  <Slider
-                    value={[progressPercent]}
-                    max={100}
-                    step={0.1}
-                    onValueChange={handleSeek}
-                    className="w-full [&_[role=slider]]:h-3.5 [&_[role=slider]]:w-3.5 [&_[role=slider]]:bg-primary [&_[role=slider]]:border-2 [&_[role=slider]]:border-primary-foreground [&_[role=slider]]:shadow-md"
-                  />
-                  <div className="flex justify-between mt-1 text-[11px] text-muted-foreground tabular-nums">
-                    <span>{formatTime(currentTime)}</span>
-                    <span>{formatTime(duration)}</span>
-                  </div>
-                </motion.div>
-
-                {/* Controls */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.35 }}
-                  className="flex items-center justify-center gap-6 mb-6"
-                >
-                  <button
-                    onClick={playPrev}
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <SkipBack className="h-5 w-5" fill="currentColor" />
-                  </button>
-
-                  <button
-                    onClick={togglePlay}
-                    className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground shadow-lg hover:bg-primary/90 transition-colors"
-                  >
-                    {isPlaying ? (
-                      <Pause className="h-6 w-6" fill="currentColor" />
+              ) : (
+                /* Lyrics Display */
+                <div ref={lyricsContainerRef} className="w-full h-64 sm:h-72 overflow-hidden">
+                  <div className="h-full flex flex-col items-center justify-center">
+                    {lyrics.length === 0 ? (
+                      <p className="text-muted-foreground text-sm">暂无歌词</p>
                     ) : (
-                      <Play className="h-6 w-6 ml-0.5" fill="currentColor" />
+                      <div className="space-y-4 py-32">
+                        {lyrics.map((line, i) => (
+                          <div
+                            key={i}
+                            data-lyric-index={i}
+                            className={`text-center transition-all duration-300 ${
+                              i === currentLyricIndex
+                                ? 'text-white scale-105'
+                                : 'text-muted-foreground/50 scale-100'
+                            }`}
+                            style={{ fontSize: `${lyricsFontSize}px` }}
+                          >
+                            <p className="leading-relaxed">{line.text}</p>
+                            {line.translation && (
+                              <p className="text-gold/60 mt-1" style={{ fontSize: `${Math.max(lyricsFontSize - 3, 11)}px` }}>
+                                {line.translation}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     )}
-                  </button>
-
-                  <button
-                    onClick={playNext}
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <SkipForward className="h-5 w-5" fill="currentColor" />
-                  </button>
-                </motion.div>
-
-                {/* Secondary controls */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="flex items-center justify-between w-full mb-8 gap-4"
-                >
-                  {/* Volume */}
-                  <div className="flex items-center gap-2 flex-1">
-                    <button
-                      onClick={() => setIsMuted(!isMuted)}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {isMuted || volume === 0 ? (
-                        <VolumeX className="h-4 w-4" />
-                      ) : (
-                        <Volume2 className="h-4 w-4" />
-                      )}
-                    </button>
-                    <Slider
-                      value={[isMuted ? 0 : volume]}
-                      max={100}
-                      step={1}
-                      onValueChange={(v) => {
-                        setVolume(v[0]);
-                        if (v[0] > 0) setIsMuted(false);
-                      }}
-                      className="flex-1 [&_[role=slider]]:h-3 [&_[role=slider]]:w-3 [&_[role=slider]]:bg-muted-foreground [&_[role=slider]]:border-0"
-                    />
                   </div>
+                </div>
+              )}
 
-                  {/* Quality selector */}
-                  <Select value={quality} onValueChange={setQuality}>
-                    <SelectTrigger className="w-auto h-7 border-0 bg-surface-2/50 text-xs px-2 gap-1">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {QUALITY_OPTIONS.map((q) => (
-                        <SelectItem key={q.value} value={q.value}>
-                          {q.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
-                  {/* Download */}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={downloadCurrentSong}
-                    className="h-7 text-xs text-muted-foreground hover:text-foreground px-2"
-                  >
-                    <Download className="h-3.5 w-3.5 mr-1" />
-                    下载
-                  </Button>
-                </motion.div>
-
-                {/* Lyrics section */}
-                {displayLyrics.length > 0 && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.45 }}
-                    className="w-full"
-                  >
-                    <div className="text-xs uppercase tracking-wider text-muted-foreground/50 mb-3">
-                      歌词
-                    </div>
-                    <div
-                      ref={lyricsRef}
-                      className="max-h-64 overflow-y-auto rounded-xl p-4 bg-surface-1/50"
-                    >
-                      {displayLyrics.map((line, index) => (
-                        <div
-                          key={index}
-                          data-lyric-index={index}
-                          className={`py-1.5 text-sm transition-all duration-300 ${
-                            index === currentLyricIndex
-                              ? "text-primary font-semibold scale-[1.02]"
-                              : Math.abs(index - currentLyricIndex) <= 2
-                              ? "text-muted-foreground"
-                              : "text-muted-foreground/40"
-                          }`}
-                        >
-                          <p className="truncate">{line.text}</p>
-                          {line.translation && (
-                            <p className={`text-xs truncate mt-0.5 ${
-                              index === currentLyricIndex
-                                ? "text-primary/70"
-                                : "text-muted-foreground/50"
-                            }`}>
-                              {line.translation}
-                            </p>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
+              {/* Song Info */}
+              <div className="text-center w-full max-w-sm">
+                <h2 className="text-xl font-bold text-white truncate">
+                  {currentSong.name}
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1 truncate">
+                  {currentSong.ar_name} · {currentSong.al_name}
+                </p>
+                {currentSong.level && (
+                  <span className="inline-block mt-2 px-2 py-0.5 rounded-full bg-gold/10 text-gold text-[11px] font-medium border border-gold/20">
+                    {currentSong.level}
+                  </span>
                 )}
+              </div>
+            </div>
 
-                {/* Bottom spacer for mobile */}
-                <div className="h-20 md:h-8" />
+            {/* Controls */}
+            <div className="px-6 pb-12 md:pb-8 space-y-4">
+              {/* Progress */}
+              <div className="space-y-2">
+                <div
+                  ref={progressRef}
+                  onClick={handleProgressClick}
+                  className="h-2 w-full cursor-pointer group relative rounded-full overflow-hidden bg-surface-hover"
+                >
+                  <div
+                    className="absolute inset-y-0 left-0 bg-gold rounded-full transition-[width] duration-100"
+                    style={{ width: `${progress}%` }}
+                  />
+                  <div
+                    className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-gold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity gold-glow-sm"
+                    style={{ left: `calc(${progress}% - 7px)` }}
+                  />
+                </div>
+                <div className="flex justify-between text-[11px] text-muted-foreground">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{formatTime(duration)}</span>
+                </div>
+              </div>
+
+              {/* Playback buttons */}
+              <div className="flex items-center justify-center gap-6">
+                <button
+                  onClick={playPrev}
+                  className="w-12 h-12 flex items-center justify-center rounded-full text-white/70 hover:text-gold transition-colors"
+                >
+                  <SkipBack className="w-6 h-6" fill="currentColor" />
+                </button>
+
+                <button
+                  onClick={togglePlay}
+                  disabled={isLoading}
+                  className="w-16 h-16 rounded-full bg-gold flex items-center justify-center text-black hover:bg-gold-light transition-all gold-glow-lg"
+                >
+                  {isLoading ? (
+                    <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                  ) : isPlaying ? (
+                    <Pause className="w-7 h-7" fill="black" />
+                  ) : (
+                    <Play className="w-7 h-7 ml-1" fill="black" />
+                  )}
+                </button>
+
+                <button
+                  onClick={playNext}
+                  className="w-12 h-12 flex items-center justify-center rounded-full text-white/70 hover:text-gold transition-colors"
+                >
+                  <SkipForward className="w-6 h-6" fill="currentColor" />
+                </button>
+              </div>
+
+              {/* Volume */}
+              <div className="flex items-center gap-3 px-4">
+                <button
+                  onClick={toggleMute}
+                  className="text-muted-foreground hover:text-gold transition-colors"
+                >
+                  {isMuted || volume === 0 ? (
+                    <VolumeX className="w-4 h-4" />
+                  ) : (
+                    <Volume2 className="w-4 h-4" />
+                  )}
+                </button>
+                <Slider
+                  value={[isMuted ? 0 : volume * 100]}
+                  max={100}
+                  step={1}
+                  className="flex-1"
+                  onValueChange={(val) => {
+                    const v = val[0] / 100;
+                    setVolume(v);
+                  }}
+                />
               </div>
             </div>
           </div>

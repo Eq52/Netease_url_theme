@@ -1,32 +1,72 @@
-"use client";
+'use client';
 
-import React from "react";
-import Sidebar from "./sidebar";
-import { usePlayer } from "@/lib/player-context";
+import { AnimatePresence, motion } from 'framer-motion';
+import { useNavStore } from '@/lib/stores/nav-store';
+import { usePlayerStore } from '@/lib/stores/player-store';
+import { Sidebar } from './sidebar';
+import { TabBar } from './tab-bar';
+import { SearchView } from '@/components/views/search-view';
+import { PlaylistView } from '@/components/views/playlist-view';
+import { AlbumView } from '@/components/views/album-view';
+import { SettingsView } from '@/components/views/settings-view';
+import { APlayerWrapper } from '@/components/player/aplayer-wrapper';
+import { MiniPlayer } from '@/components/player/mini-player';
+import { FullPlayer } from '@/components/player/full-player';
 
-interface AppShellProps {
-  children: React.ReactNode;
-  miniPlayer: React.ReactNode;
-}
+const viewComponents = {
+  search: SearchView,
+  playlist: PlaylistView,
+  album: AlbumView,
+  settings: SettingsView,
+};
 
-export default function AppShell({ children, miniPlayer }: AppShellProps) {
-  const { currentSong } = usePlayer();
+const pageVariants = {
+  initial: { opacity: 0, x: 20 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -20 },
+};
+
+export function AppShell() {
+  const { activeView } = useNavStore();
+  const { currentSong } = usePlayerStore();
+
+  const ActiveComponent = viewComponents[activeView];
+
+  const hasSong = !!currentSong;
 
   return (
-    <div className="h-screen flex flex-col md:flex-row overflow-hidden">
-      {/* Sidebar - desktop only */}
+    <div className="min-h-screen bg-background flex">
       <Sidebar />
 
-      {/* Main content area */}
-      <main className="flex-1 flex flex-col overflow-hidden relative">
-        {/* Content scrollable area */}
-        <div className="flex-1 overflow-y-auto pb-[120px] md:pb-0">
-          {children}
-        </div>
+      <main
+        className="flex-1 md:ml-16 flex flex-col transition-all duration-300"
+        style={{
+          paddingBottom: hasSong ? '80px' : undefined,
+        }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeView}
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="flex-1"
+          >
+            <ActiveComponent />
+          </motion.div>
+        </AnimatePresence>
 
-        {/* Mini Player - sticky at bottom */}
-        {miniPlayer}
+        {/* Mobile bottom spacer for tab bar */}
+        <div className="h-14 md:hidden" />
       </main>
+
+      <TabBar />
+      <APlayerWrapper />
+
+      {hasSong && <MiniPlayer />}
+      <FullPlayer />
     </div>
   );
 }

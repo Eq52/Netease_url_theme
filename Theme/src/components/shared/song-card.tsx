@@ -1,89 +1,80 @@
-"use client";
+'use client';
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Play, Download } from "lucide-react";
-import { usePlayer } from "@/lib/player-context";
-import type { SearchSong } from "@/lib/api";
-import { cn } from "@/lib/utils";
+import { Play } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { usePlayerStore } from '@/lib/stores/player-store';
+import type { QueueItem } from '@/lib/types';
 
 interface SongCardProps {
-  song: SearchSong;
-  index: number;
-  queue: SearchSong[];
+  song: QueueItem;
+  queue?: QueueItem[];
+  index?: number;
 }
 
-export default function SongCard({ song, index, queue }: SongCardProps) {
-  const { playSong, downloadSongById } = usePlayer();
+export function SongCard({ song, queue, index }: SongCardProps) {
+  const { playSong, currentSongId, isLoading } = usePlayerStore();
 
-  const handlePlay = () => {
-    const queueItems = queue.map(s => ({
-      id: s.id,
-      name: s.name,
-      artists: s.artists,
-      album: s.album,
-      picUrl: s.picUrl,
-    }));
-    playSong(
-      { id: song.id, name: song.name, artists: song.artists, album: song.album, picUrl: song.picUrl },
-      queueItems,
-      index
-    );
+  const isActive = currentSongId === song.id;
+  const coverUrl = song.picUrl || '/logo.svg';
+
+  const handleClick = () => {
+    if (!isLoading) {
+      playSong(song, queue, index);
+    }
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12, scale: 0.97 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ delay: index * 0.05, duration: 0.3 }}
-      whileHover={{ scale: 1.02, y: -2 }}
-      className="group cursor-pointer"
-      onClick={handlePlay}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      onClick={handleClick}
+      className="relative group cursor-pointer rounded-xl overflow-hidden bg-surface-card border border-transparent hover:border-gold/20 transition-all duration-300"
     >
-      <div className="glass-card rounded-xl overflow-hidden">
-        {/* Cover image with play overlay */}
-        <div className="relative aspect-square overflow-hidden">
-          <img
-            src={song.picUrl || ""}
-            alt={song.name}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src =
-                "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23333' width='100' height='100'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='%23666' font-size='28'%3E♪%3C/text%3E%3C/svg%3E";
-            }}
-          />
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handlePlay();
-              }}
-              className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground shadow-lg hover:scale-110 transition-transform"
-            >
-              <Play className="h-4 w-4 ml-0.5" fill="currentColor" />
-            </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                downloadSongById(song.id, song.name, song.artists);
-              }}
-              className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform"
-            >
-              <Download className="h-4 w-4" />
-            </button>
-          </div>
+      {/* Cover Art */}
+      <div className="relative aspect-square overflow-hidden">
+        <img
+          src={coverUrl}
+          alt={song.name}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = '/logo.svg';
+          }}
+        />
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+        {/* Play button overlay */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            whileHover={{ scale: 1.1 }}
+            className="w-12 h-12 rounded-full bg-gold/90 flex items-center justify-center gold-glow"
+          >
+            <Play className="w-5 h-5 text-black ml-0.5" fill="black" />
+          </motion.div>
         </div>
 
-        {/* Song info */}
-        <div className="p-3">
-          <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">
-            {song.name}
-          </p>
-          <p className="text-xs text-muted-foreground truncate mt-0.5">
-            {song.artists}
-          </p>
-        </div>
+        {/* Active indicator */}
+        {isActive && (
+          <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-gold text-black text-[10px] font-bold">
+            播放中
+          </div>
+        )}
+      </div>
+
+      {/* Info */}
+      <div className="p-3 space-y-1">
+        <h3 className="text-sm font-medium text-white truncate group-hover:text-gold transition-colors">
+          {song.name}
+        </h3>
+        <p className="text-xs text-muted-foreground truncate">
+          {song.artists}
+        </p>
+        <p className="text-[11px] text-muted-foreground/60 truncate">
+          {song.album}
+        </p>
       </div>
     </motion.div>
   );

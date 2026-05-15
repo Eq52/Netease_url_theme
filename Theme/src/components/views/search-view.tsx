@@ -1,147 +1,140 @@
-"use client";
+'use client';
 
-import React, { useState, useCallback, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, Music2, Loader2 } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { searchSongs, type SearchSong } from "@/lib/api";
-import SongCard from "@/components/shared/song-card";
-import { toast } from "sonner";
+import { useState, useCallback } from 'react';
+import { Search, Loader2, Music2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Input } from '@/components/ui/input';
+import { SongCard } from '@/components/shared/song-card';
+import { api } from '@/lib/api';
+import type { QueueItem } from '@/lib/types';
 
-export default function SearchView() {
-  const [keyword, setKeyword] = useState("");
-  const [results, setResults] = useState<SearchSong[]>([]);
+export function SearchView() {
+  const [keyword, setKeyword] = useState('');
+  const [results, setResults] = useState<QueueItem[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const handleSearch = useCallback(async () => {
-    if (!keyword.trim()) {
-      toast.error("请输入搜索关键词");
-      return;
-    }
+    if (!keyword.trim()) return;
     setIsSearching(true);
     setHasSearched(true);
     try {
-      const res = await searchSongs(keyword.trim(), 30);
-      if (res.success && res.data) {
-        setResults(res.data);
-        if (res.data.length === 0) {
-          toast.info("没有找到相关歌曲");
-        }
-      } else {
-        toast.error(res.message || "搜索失败");
-        setResults([]);
-      }
-    } catch {
-      toast.error("搜索请求失败");
+      const response = await api.searchSongs(keyword.trim(), 30);
+      const data = response.data;
+      // Handle various response formats
+      const rawSongs = Array.isArray(data) ? data : [];
+      const songs: QueueItem[] = rawSongs.map((item: unknown) => {
+        const r = item as Record<string, unknown>;
+        return {
+          id: Number(r.id),
+          name: String(r.name || ''),
+          artists: String(r.artists || r.artist || ''),
+          album: String(r.album || r.al_name || ''),
+          picUrl: String(r.picUrl || r.pic || ''),
+        };
+      });
+      setResults(songs);
+    } catch (err) {
+      console.error('Search failed:', err);
       setResults([]);
     } finally {
       setIsSearching(false);
     }
   }, [keyword]);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  }, [handleSearch]);
+
   return (
-    <div className="px-4 md:px-8 py-6">
-      {/* Search bar */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="mb-8"
-      >
-        <div className="max-w-2xl mx-auto">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              ref={inputRef}
-              placeholder="搜索你想要的音乐..."
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              className="glass-input pl-12 h-12 md:h-14 text-base border-0 focus-visible:ring-1 focus-visible:ring-primary rounded-xl"
-            />
-            <Button
-              onClick={handleSearch}
-              disabled={isSearching}
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-9 md:h-10 px-4 md:px-6 bg-primary hover:bg-primary/90 rounded-lg"
-            >
-              {isSearching ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                "搜索"
-              )}
-            </Button>
-          </div>
+    <div className="p-4 md:p-6 lg:p-8 max-w-6xl mx-auto w-full">
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">
+          搜索音乐
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          发现你喜欢的歌曲
+        </p>
+      </div>
+
+      {/* Search Bar */}
+      <div className="relative mb-8">
+        <div className="relative group">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-gold transition-colors" />
+          <Input
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="输入歌曲名、歌手或专辑..."
+            className="h-12 pl-12 pr-24 rounded-xl bg-surface-card border-surface-hover text-white placeholder:text-muted-foreground/60 focus:border-gold focus:ring-gold/20 text-sm"
+          />
+          <button
+            onClick={handleSearch}
+            disabled={isSearching || !keyword.trim()}
+            className="absolute right-2 top-1/2 -translate-y-1/2 h-8 px-4 rounded-lg bg-gold text-black text-sm font-medium hover:bg-gold-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isSearching ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              '搜索'
+            )}
+          </button>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Empty state - before searching */}
-      {!hasSearched && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="flex flex-col items-center justify-center py-20 text-center"
-        >
-          <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 music-glow">
-            <Music2 className="h-10 w-10 text-primary" />
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Aural</h2>
-          <p className="text-muted-foreground text-sm max-w-xs">
-            搜索歌曲名、歌手名或关键词，发现你喜欢的音乐
-          </p>
-        </motion.div>
-      )}
-
-      {/* Loading state */}
+      {/* Loading State */}
       {isSearching && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="glass-card rounded-xl overflow-hidden">
-              <Skeleton className="aspect-square" />
-              <div className="p-3 space-y-2">
-                <Skeleton className="h-4 w-3/4" />
-                <Skeleton className="h-3 w-1/2" />
-              </div>
-            </div>
-          ))}
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <Loader2 className="w-8 h-8 text-gold animate-spin" />
+          <p className="text-sm text-muted-foreground">搜索中...</p>
         </div>
       )}
 
-      {/* Results grid */}
-      {!isSearching && results.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm text-muted-foreground">
-              找到 <span className="text-foreground font-medium">{results.length}</span> 首歌曲
-            </h3>
+      {/* Empty State */}
+      {!isSearching && !hasSearched && (
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <div className="w-20 h-20 rounded-full bg-surface-card flex items-center justify-center">
+            <Music2 className="w-10 h-10 text-gold/40" />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {results.map((song, i) => (
-              <SongCard key={song.id} song={song} index={i} queue={results} />
+          <p className="text-muted-foreground text-sm">输入关键词开始搜索</p>
+        </div>
+      )}
+
+      {/* No Results */}
+      {!isSearching && hasSearched && results.length === 0 && (
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <div className="w-20 h-20 rounded-full bg-surface-card flex items-center justify-center">
+            <Search className="w-10 h-10 text-gold/40" />
+          </div>
+          <p className="text-muted-foreground text-sm">没有找到相关歌曲</p>
+        </div>
+      )}
+
+      {/* Results Grid */}
+      {!isSearching && results.length > 0 && (
+        <div>
+          <p className="text-sm text-muted-foreground mb-4">
+            找到 <span className="text-gold font-medium">{results.length}</span> 首歌曲
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {results.map((song, index) => (
+              <motion.div
+                key={song.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.03, duration: 0.3 }}
+              >
+                <SongCard
+                  song={song}
+                  queue={results}
+                  index={index}
+                />
+              </motion.div>
             ))}
           </div>
-        </motion.div>
-      )}
-
-      {/* No results */}
-      {!isSearching && hasSearched && results.length === 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex flex-col items-center justify-center py-20 text-center"
-        >
-          <Search className="h-12 w-12 text-muted-foreground/30 mb-4" />
-          <h3 className="text-lg font-medium text-muted-foreground">没有找到相关歌曲</h3>
-          <p className="text-sm text-muted-foreground/60 mt-1">试试换个关键词搜索</p>
-        </motion.div>
+        </div>
       )}
     </div>
   );

@@ -1,220 +1,222 @@
-"use client";
+'use client';
 
-import React, { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Disc3, Loader2, ArrowLeft } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import { getAlbum, type AlbumData } from "@/lib/api";
-import { extractAndCheckId } from "@/lib/music-utils";
-import SongRow from "@/components/shared/song-row";
-import { useView } from "@/lib/view-context";
-import { toast } from "sonner";
+import { useState, useCallback } from 'react';
+import { Loader2, Disc3 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { SongRow } from '@/components/shared/song-row';
+import { usePlayerStore } from '@/lib/stores/player-store';
+import { api } from '@/lib/api';
+import { extractId } from '@/lib/music-utils';
+import type { QueueItem } from '@/lib/types';
 
-export default function AlbumView() {
-  const { albumId } = useView();
-  const [input, setInput] = useState("");
-  const [result, setResult] = useState<AlbumData | null>(null);
+interface AlbumInfo {
+  id: number;
+  name: string;
+  coverImgUrl: string;
+  artist: { name: string };
+  publishTime: number;
+  description: string;
+  songs: QueueItem[];
+}
+
+export function AlbumView() {
+  const [inputValue, setInputValue] = useState('');
+  const [album, setAlbum] = useState<AlbumInfo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { playSong } = usePlayerStore();
 
-  // Auto-load if albumId is set
-  React.useEffect(() => {
-    if (albumId) {
-      setInput(albumId);
-      loadAlbum(albumId);
-    }
-  }, [albumId]);
-
-  const loadAlbum = useCallback(async (id?: string) => {
-    const text = id || input;
-    if (!text.trim()) {
-      toast.error("请输入专辑ID或链接");
-      return;
-    }
-
-    const extracted = extractAndCheckId(text.trim());
-    if (!extracted) {
-      toast.error("无法识别专辑ID或链接");
-      return;
-    }
-
+  const loadAlbum = useCallback(async () => {
+    if (!inputValue.trim()) return;
     setIsLoading(true);
-    setResult(null);
+    setError('');
+    setAlbum(null);
+
     try {
-      const res = await getAlbum(extracted.id);
-      if (res.success && res.data) {
-        setResult(res.data);
-        toast.success(`专辑加载成功，共 ${res.data.album.songs.length} 首`);
-      } else {
-        toast.error(res.message || "专辑加载失败");
+      const id = extractId(inputValue.trim());
+      if (!id) {
+        setError('无法解析专辑 ID');
+        setIsLoading(false);
+        return;
       }
-    } catch {
-      toast.error("专辑请求失败");
+
+      const response = await api.getAlbum(id);
+      const al = response.data?.album;
+
+      if (!al) {
+        setError('专辑不存在或加载失败');
+        setIsLoading(false);
+        return;
+      }
+
+      const songs: QueueItem[] = (al.songs || []).map((s) => ({
+        id: s.id,
+        name: s.name,
+        artists: s.artists,
+        album: s.album,
+        picUrl: s.picUrl,
+      }));
+
+      setAlbum({
+        id: al.id,
+        name: al.name,
+        coverImgUrl: al.coverImgUrl,
+        artist: al.artist,
+        publishTime: al.publishTime,
+        description: al.description,
+        songs,
+      });
+    } catch (err) {
+      console.error('Load album failed:', err);
+      setError('加载失败，请检查专辑 ID');
     } finally {
       setIsLoading(false);
     }
-  }, [input]);
+  }, [inputValue]);
 
-  // Detect paste with URL
-  const handlePaste = useCallback((e: React.ClipboardEvent) => {
-    const text = e.clipboardData.getData("text");
-    const extracted = extractAndCheckId(text);
-    if (extracted && extracted.type === "album") {
-      setTimeout(() => loadAlbum(text), 100);
-    }
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') loadAlbum();
   }, [loadAlbum]);
 
-  const trackRows = result?.album.songs || [];
-  const queueData = trackRows.map(t => ({
-    id: t.id,
-    name: t.name,
-    artists: t.artists,
-    album: t.album,
-    picUrl: t.picUrl,
-  }));
+  const handlePlayAll = useCallback(() => {
+    if (!album || album.songs.length === 0) return;
+    playSong(album.songs[0], album.songs, 0);
+  }, [album, playSong]);
+
+  const formatDate = (timestamp: number) => {
+    if (!timestamp) return '未知';
+    const date = new Date(timestamp);
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  };
 
   return (
-    <div className="px-4 md:px-8 py-6">
-      <AnimatePresence mode="wait">
-        {/* Input state */}
-        {!result && !isLoading && (
-          <motion.div
-            key="input"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="flex flex-col items-center justify-center py-16"
-          >
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
-              <Disc3 className="h-8 w-8 text-primary" />
-            </div>
-            <h2 className="text-xl font-bold mb-2">打开专辑</h2>
-            <p className="text-sm text-muted-foreground mb-6 text-center max-w-xs">
-              输入网易云专辑ID或链接，浏览并播放专辑中的歌曲
-            </p>
-            <div className="flex gap-2 w-full max-w-md">
-              <Input
-                placeholder="输入专辑ID或链接..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && loadAlbum()}
-                onPaste={handlePaste}
-                className="glass-input h-11 border-0 focus-visible:ring-1 focus-visible:ring-primary rounded-lg"
-              />
-              <Button
-                onClick={() => loadAlbum()}
-                disabled={isLoading}
-                className="h-11 px-5 bg-primary hover:bg-primary/90 rounded-lg shrink-0"
-              >
-                打开
-              </Button>
-            </div>
-          </motion.div>
-        )}
+    <div className="p-4 md:p-6 lg:p-8 max-w-4xl mx-auto w-full">
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">
+          专辑
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          输入专辑 ID 或链接来加载专辑
+        </p>
+      </div>
 
-        {/* Loading state */}
-        {isLoading && (
-          <motion.div
-            key="loading"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <Skeleton className="w-28 h-28 md:w-36 md:h-36 rounded-2xl shrink-0" />
-              <div className="flex-1 space-y-3">
-                <Skeleton className="h-6 w-3/4" />
-                <Skeleton className="h-4 w-1/2" />
-                <Skeleton className="h-4 w-2/3" />
-              </div>
-            </div>
-            <div className="space-y-2">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <Skeleton key={i} className="h-14 w-full rounded-lg" />
-              ))}
-            </div>
-          </motion.div>
-        )}
+      {/* Input */}
+      <div className="flex gap-2 mb-6">
+        <Input
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="输入专辑 ID 或链接..."
+          className="flex-1 h-11 rounded-xl bg-surface-card border-surface-hover text-white placeholder:text-muted-foreground/60 focus:border-gold focus:ring-gold/20"
+        />
+        <Button
+          onClick={loadAlbum}
+          disabled={isLoading || !inputValue.trim()}
+          className="h-11 px-6 rounded-xl bg-gold text-black hover:bg-gold-light font-medium"
+        >
+          {isLoading ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            '加载'
+          )}
+        </Button>
+      </div>
 
-        {/* Result state */}
-        {result && !isLoading && (
-          <motion.div
-            key="result"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            {/* Back button */}
-            <button
-              onClick={() => {
-                setResult(null);
-                setInput("");
-              }}
-              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              返回
-            </button>
+      {/* Error */}
+      {error && (
+        <div className="mb-6 p-4 rounded-xl bg-destructive/10 border border-destructive/20">
+          <p className="text-sm text-destructive">{error}</p>
+        </div>
+      )}
 
-            {/* Hero section */}
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
-              <div className="w-36 h-36 md:w-44 md:h-44 rounded-2xl overflow-hidden shadow-2xl shrink-0 music-glow">
+      {/* Loading */}
+      {isLoading && (
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <Loader2 className="w-8 h-8 text-gold animate-spin" />
+          <p className="text-sm text-muted-foreground">加载专辑中...</p>
+        </div>
+      )}
+
+      {/* Empty state */}
+      {!album && !isLoading && !error && (
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <div className="w-20 h-20 rounded-full bg-surface-card flex items-center justify-center">
+            <Disc3 className="w-10 h-10 text-gold/40" />
+          </div>
+          <p className="text-muted-foreground text-sm">输入专辑 ID 开始探索</p>
+        </div>
+      )}
+
+      {/* Album Content */}
+      {album && !isLoading && (
+        <div className="space-y-6">
+          {/* Banner */}
+          <div className="relative rounded-2xl overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center scale-110 blur-sm"
+              style={{ backgroundImage: `url(${album.coverImgUrl})` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
+
+            <div className="relative flex gap-5 p-5 md:p-6">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden flex-shrink-0 shadow-xl">
                 <img
-                  src={result.album.coverImgUrl || ""}
-                  alt="专辑封面"
+                  src={album.coverImgUrl}
+                  alt={album.name}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23333' width='100' height='100'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='%23666' font-size='20'%3E♫%3C/text%3E%3C/svg%3E";
+                    (e.target as HTMLImageElement).src = '/logo.svg';
                   }}
                 />
               </div>
-              <div className="flex-1 min-w-0 text-center sm:text-left">
-                <div className="text-[11px] uppercase tracking-wider text-muted-foreground/60 mb-1">专辑</div>
-                <h2 className="text-xl md:text-2xl font-bold break-words">
-                  {result.album.name}
+
+              <div className="flex flex-col justify-end min-w-0">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-2 line-clamp-2">
+                  {album.name}
                 </h2>
-                <p className="text-sm text-primary mt-1.5 truncate">
-                  {result.album.artist}
+                <p className="text-sm text-gold/80 mb-1">
+                  {album.artist?.name || '未知歌手'}
                 </p>
-                <div className="flex flex-wrap gap-2 mt-2.5 justify-center sm:justify-start">
-                  <Badge variant="secondary">
-                    {result.album.songs.length} 首
-                  </Badge>
-                </div>
-                {result.album.description && (
-                  <p className="text-xs text-muted-foreground/70 mt-2 line-clamp-2">
-                    {result.album.description}
+                <p className="text-xs text-muted-foreground">
+                  {album.songs.length} 首歌曲 · {formatDate(album.publishTime)}
+                </p>
+                {album.description && (
+                  <p className="text-xs text-muted-foreground/70 mt-2 line-clamp-2 max-w-md">
+                    {album.description}
                   </p>
                 )}
               </div>
             </div>
+          </div>
 
-            {/* Track list */}
-            <div className="glass-card rounded-xl overflow-hidden">
-              <div className="px-3 py-2 border-b border-border/30 flex items-center gap-3">
-                <div className="w-6 text-center text-[11px] text-muted-foreground/50">#</div>
-                <div className="w-10" />
-                <div className="flex-1 text-[11px] text-muted-foreground/50 uppercase tracking-wider">标题</div>
-              </div>
-              <div className="max-h-[calc(100vh-380px)] overflow-y-auto">
-                {trackRows.map((track, i) => (
-                  <SongRow
-                    key={track.id}
-                    song={track}
-                    index={i}
-                    queue={queueData}
-                    showIndex
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          {/* Play All button */}
+          <div className="flex items-center gap-3">
+            <Button
+              onClick={handlePlayAll}
+              className="bg-gold text-black hover:bg-gold-light rounded-xl px-6 font-medium"
+            >
+              播放全部
+            </Button>
+            <span className="text-sm text-muted-foreground">
+              共 {album.songs.length} 首
+            </span>
+          </div>
+
+          {/* Track List */}
+          <div className="space-y-1">
+            {album.songs.map((song, index) => (
+              <SongRow
+                key={song.id}
+                song={song}
+                index={index}
+                queue={album.songs}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: "Aural",
-  description: "Aural — 沉浸式音乐体验",
-  icons: { icon: "/favicon.svg" },
+  title: "Aural - Premium Music Experience",
+  description: "A premium music player with black & gold theme. Search, play, and download music.",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -19,13 +30,16 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className="dark" suppressHydrationWarning>
       <head>
-        <script src="/config.js" defer></script>
         <link rel="stylesheet" href="/aplayer.min.css" />
-        <script src="/aplayer.min.js" defer></script>
+        <Script src="/config.js" strategy="beforeInteractive" />
+        <Script src="/aplayer.min.js" strategy="beforeInteractive" />
       </head>
-      <body className={`${inter.variable} font-sans antialiased bg-background text-foreground aural-bg`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground overflow-x-hidden`}
+        style={{ backgroundColor: '#0a0a0a' }}
+      >
         {children}
-        <Toaster position="top-center" richColors theme="dark" />
+        <Toaster />
       </body>
     </html>
   );
