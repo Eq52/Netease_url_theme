@@ -21,7 +21,11 @@ async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> 
   return res.json();
 }
 
-function blobDownload(url: string, body: Record<string, unknown>): Promise<void> {
+function sanitizeFilename(name: string): string {
+  return name.replace(/[\\/:*?"<>|]/g, '_');
+}
+
+function blobDownload(url: string, body: Record<string, unknown>, filename: string): Promise<void> {
   const base = getApiBase();
   const fullUrl = `${base}${url}`;
   return fetch(fullUrl, {
@@ -35,7 +39,7 @@ function blobDownload(url: string, body: Record<string, unknown>): Promise<void>
     const downloadUrl = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = downloadUrl;
-    a.download = 'download.mp3';
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -66,8 +70,10 @@ export const api = {
       method: 'GET',
     }),
 
-  downloadSong: (id: string, quality: string) =>
-    blobDownload('/Download', { id, quality }),
+  downloadSong: (id: string, quality: string, name?: string, artist?: string) => {
+    const filename = (name && artist) ? `${sanitizeFilename(name)}-${sanitizeFilename(artist)}.mp3` : 'download.mp3';
+    return blobDownload('/Download', { id, quality }, filename);
+  },
 
   getHealth: () =>
     fetchApi<{ status: number; success: boolean; message: string; data: { cookie_status: string; version: string; downloads_dir: string; service: string; timestamp: number } }>('/health', {

@@ -76,8 +76,19 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   setAplayerControls: (controls) => set({ aplayerControls: controls }),
 
   playSong: async (song, queue, index) => {
+    // Skip if this is the same song that's already playing
+    if (get().currentSongId === song.id && get().isPlaying) return;
+
     const requestId = ++get()._requestId;
     set({ isLoading: true });
+
+    // Show toast notification
+    try {
+      const { toast } = await import('sonner');
+      toast(`正在解析: ${song.name}`, { description: song.artists || '' });
+    } catch {
+      // sonner not available, ignore
+    }
 
     try {
       // Import api dynamically to avoid circular deps
@@ -96,6 +107,10 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
       const detail = response.data;
 
       if (!detail || !detail.url) {
+        try {
+          const { toast } = await import('sonner');
+          toast.error(`解析失败: ${song.name}`);
+        } catch { /* ignore */ }
         set({ isLoading: false });
         return;
       }
