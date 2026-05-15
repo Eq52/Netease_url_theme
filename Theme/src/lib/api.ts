@@ -25,6 +25,22 @@ function sanitizeFilename(name: string): string {
   return name.replace(/[\\/:*?"<>|]/g, '_');
 }
 
+function inferExtensionFromUrl(url: string): string {
+  const lower = url.toLowerCase();
+  if (lower.includes('.flac')) return '.flac';
+  if (lower.includes('.mp3')) return '.mp3';
+  if (lower.includes('.m4a')) return '.m4a';
+  if (lower.includes('.mp4')) return '.mp4';
+  if (lower.includes('.wav')) return '.wav';
+  if (lower.includes('.ogg')) return '.ogg';
+  if (lower.includes('.aac')) return '.aac';
+  // Netease CDN URLs often contain format hints like "/mp3/" or "/m4a/"
+  if (/[/.]mp3([/?]|$)/.test(lower)) return '.mp3';
+  if (/[/.](m4a|mp4)([/?]|$)/.test(lower)) return '.m4a';
+  if (/[/.]flac([/?]|$)/.test(lower)) return '.flac';
+  return '';
+}
+
 function blobDownload(url: string, body: Record<string, unknown>, filename: string): Promise<void> {
   const base = getApiBase();
   const fullUrl = `${base}${url}`;
@@ -49,15 +65,19 @@ function blobDownload(url: string, body: Record<string, unknown>, filename: stri
         'audio/mpeg': 'mp3',
         'audio/flac': 'flac',
         'audio/mp4': 'm4a',
+        'audio/m4a': 'm4a',
         'audio/x-m4a': 'm4a',
         'audio/wav': 'wav',
         'audio/ogg': 'ogg',
         'audio/aac': 'aac',
+        'application/octet-stream': '',
       };
       for (const [mime, ext] of Object.entries(mimeToExt)) {
         if (contentType.includes(mime)) {
-          const baseName = filename.replace(/\.\w+$/, '');
-          filename = `${baseName}.${ext}`;
+          if (ext) {
+            const baseName = filename.replace(/\.\w+$/, '');
+            filename = `${baseName}.${ext}`;
+          }
           break;
         }
       }
@@ -84,7 +104,7 @@ export const api = {
     }),
 
   getSongDetail: (id: string, level: string) =>
-    fetchApi<{ data?: { id: string; name: string; ar_name: string; al_name: string; pic: string; url: string; size: string; level: string; lyric: string; tlyric: string }; [key: string]: unknown }>('/Song_V1', {
+    fetchApi<{ data?: { id: string; name: string; ar_name: string; al_name: string; pic: string; url: string; size: string; level: string; type: string; lyric: string; tlyric: string }; [key: string]: unknown }>('/Song_V1', {
       method: 'POST',
       body: JSON.stringify({ id, level, type: 'json' }),
     }),
@@ -99,8 +119,9 @@ export const api = {
       method: 'GET',
     }),
 
-  downloadSong: (id: string, quality: string, name?: string, artist?: string) => {
-    const filename = (name && artist) ? `${sanitizeFilename(name)}-${sanitizeFilename(artist)}` : 'download';
+  downloadSong: (id: string, quality: string, name?: string, artist?: string, fileType?: string) => {
+    const baseName = (name && artist) ? `${sanitizeFilename(name)}-${sanitizeFilename(artist)}` : 'download';
+    const filename = fileType ? `${baseName}.${fileType}` : baseName;
     return blobDownload('/Download', { id, quality }, filename);
   },
 

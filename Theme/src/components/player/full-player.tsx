@@ -67,7 +67,7 @@ export function FullPlayer() {
     if (!currentSong) return;
     const { downloadQuality } = useSettingsStore.getState();
     try {
-      await api.downloadSong(currentSong.id, downloadQuality, currentSong.name, currentSong.ar_name);
+      await api.downloadSong(currentSong.id, downloadQuality, currentSong.name, currentSong.ar_name, currentSong.type);
     } catch (err) {
       console.error('Download failed:', err);
     }

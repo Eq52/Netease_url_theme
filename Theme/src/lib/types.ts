@@ -16,6 +16,7 @@ export interface SongDetail {
   url: string;
   size: string;
   level: string;
+  type: string;
   lyric: string;
   tlyric: string;
 }
@@ -101,5 +102,4 @@ export const QUALITY_OPTIONS: QualityOption[] = [
   { value: 'sky', label: '沉浸环绕声', description: '沉浸式环绕声' },
   { value: 'jyeffect', label: '高清环绕声', description: '高清环绕声' },
   { value: 'jymaster', label: '超清母带', description: '超清母带音质' },
-  { value: 'dolby', label: '杜比全景声', description: 'Dolby Atmos 空间音频' },
 ];

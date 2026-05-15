@@ -396,7 +396,8 @@ def get_song_info():
                 response_data.update({
                     'url': url_data.get('url', ''),
                     'size': api_service._format_file_size(url_data.get('size', 0)),
-                    'level': url_data.get('level', level)
+                    'level': url_data.get('level', level),
+                    'type': url_data.get('type', '')
                 })
             else:
                 response_data.update({
