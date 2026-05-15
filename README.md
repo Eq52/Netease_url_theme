@@ -2,7 +2,7 @@
 
 ## 注：v2.0仍在测试，它是v1.4及以前的前端重构版，在新版发布前建议使用v1.4版本。
 
-基于 [Suxiaoqinx/Netease_url](https://github.com/Suxiaoqinx/Netease_url) 的二次开发项目，融合 Apple Music / Spotify / 网易云音乐的设计语言，打造沉浸式音乐体验。
+基于 [Suxiaoqinx/Netease_url](https://github.com/Suxiaoqinx/Netease_url) 的二次开发项目，重构前端，打造沉浸式音乐体验。
 
 > **声明**：本项目核心后端代码来源于 [Suxiaoqinx/Netease_url](https://github.com/Suxiaoqinx/Netease_url)（原作），本仓库对 `main.py` 进行了适配修改，并使用 Next.js + Tailwind CSS 全新重写了前端界面。
 
