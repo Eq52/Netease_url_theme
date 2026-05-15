@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Aural - Premium Music Experience",
   description: "A premium music player with black & gold theme. Search, play, and download music.",
   icons: {
-    icon: "/logo.svg",
+    icon: "/logo.png",
   },
 };
 
