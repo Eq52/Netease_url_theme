@@ -33,13 +33,30 @@ except ImportError as e:
     sys.exit(1)
 
 
+def get_base_path():
+    """获取应用基础路径，兼容 PyInstaller 打包后的环境"""
+    if getattr(sys, 'frozen', False):
+        # PyInstaller 打包后，exe 所在目录
+        return os.path.dirname(sys.executable)
+    else:
+        # 正常运行时，脚本所在目录
+        return os.path.dirname(os.path.abspath(__file__))
+
+def get_bundle_path():
+    """获取打包资源路径（templates 等静态文件）"""
+    if getattr(sys, 'frozen', False):
+        return sys._MEIPASS
+    else:
+        return os.path.dirname(os.path.abspath(__file__))
+
+
 @dataclass
 class APIConfig:
     """API配置类"""
     host: str = '0.0.0.0'
     port: int = 5000
     debug: bool = False
-    downloads_dir: str = 'downloads'
+    downloads_dir: str = ''  # 留空表示自动使用 base_path/downloads
     max_file_size: int = 500 * 1024 * 1024  # 500MB
     request_timeout: int = 30
     log_level: str = 'INFO'
@@ -80,13 +97,24 @@ class MusicAPIService:
     def __init__(self, config: APIConfig):
         self.config = config
         self.logger = self._setup_logger()
-        self.cookie_manager = CookieManager()
+
+        base = get_base_path()
+
+        # cookie.txt 路径：打包后从 exe 同目录读取，正常运行从脚本目录读取
+        cookie_file = os.path.join(base, 'cookie.txt')
+        self.cookie_manager = CookieManager(cookie_file)
         self.netease_api = NeteaseAPI()
-        self.downloader = MusicDownloader()
-        
-        # 创建下载目录
-        self.downloads_path = Path(config.downloads_dir)
+
+        # 创建下载目录（打包后在 exe 同目录，正常在脚本目录）
+        downloads_dir = config.downloads_dir if config.downloads_dir else os.path.join(base, 'downloads')
+        self.downloads_path = Path(downloads_dir)
         self.downloads_path.mkdir(exist_ok=True)
+
+        # 关键修复：将正确的绝对路径传给 MusicDownloader，
+        # 避免下载器使用 CWD 相对路径导致与 api_service.downloads_path 不一致
+        self.downloader = MusicDownloader(download_dir=str(self.downloads_path))
+        # 覆盖下载器内部的 CookieManager，确保也使用正确的 cookie 路径
+        self.downloader.cookie_manager = self.cookie_manager
         
         self.logger.info(f"音乐API服务初始化完成，下载目录: {self.downloads_path.absolute()}")
     
@@ -106,7 +134,9 @@ class MusicAPIService:
             
             # 文件处理器
             try:
-                file_handler = logging.FileHandler('music_api.log', encoding='utf-8')
+                base = get_base_path()
+                log_file = os.path.join(base, 'music_api.log')
+                file_handler = logging.FileHandler(log_file, encoding='utf-8')
                 file_formatter = logging.Formatter(
                     '%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s'
                 )
@@ -205,7 +235,7 @@ class MusicAPIService:
 
 # 创建Flask应用和服务实例
 config = APIConfig()
-TEMPLATES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+TEMPLATES_DIR = os.path.join(get_bundle_path(), 'templates')
 app = Flask(__name__, static_folder=TEMPLATES_DIR, static_url_path='')
 api_service = MusicAPIService(config)
 
@@ -558,8 +588,17 @@ def download_music_api():
                 if not download_result.success:
                     return APIResponse.error(f"下载失败: {download_result.error_message}", 500)
                 
-                file_path = Path(download_result.file_path)
-                api_service.logger.info(f"下载完成: {filename}")
+                # 下载器可能使用不同的文件名格式，查找实际下载的文件
+                downloaded_path = Path(download_result.file_path)
+                if downloaded_path.exists():
+                    file_path = downloaded_path
+                else:
+                    # 兜底：在 downloads_path 中查找匹配的文件
+                    candidates = list(api_service.downloads_path.glob(f"*{music_info['name']}*"))
+                    if candidates:
+                        file_path = candidates[-1]
+
+                api_service.logger.info(f"下载完成: {file_path.name}")
                 
             except DownloadException as e:
                 api_service.logger.error(f"下载异常: {e}")
@@ -595,7 +634,7 @@ def download_music_api():
                     mimetype=f"audio/{music_info['file_type']}"
                 )
                 response.headers['X-Download-Message'] = 'Download completed successfully'
-                response.headers['X-Download-Filename'] = quote(filename, safe='')
+                response.headers['X-Download-Filename'] = quote(file_path.name, safe='')
                 return response
             except Exception as e:
                 api_service.logger.error(f"发送文件失败: {e}")
