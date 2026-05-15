@@ -1,3 +1,4 @@
+![LOGO](Theme/public/logo.png)
 # Aural
 
 基于 [Suxiaoqinx/Netease_url](https://github.com/Suxiaoqinx/Netease_url) 的二次开发项目，使用 Next.js + Tailwind CSS 全新重写了前端界面，采用黑金沉浸式主题设计，打造以音乐为核心的 Web App 体验。
