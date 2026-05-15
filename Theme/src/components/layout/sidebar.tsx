@@ -61,7 +61,7 @@ export function Sidebar() {
       {/* Bottom decorative line */}
       <div className="mt-auto mx-4 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
       <div className="mt-3 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <p className="text-[10px] text-muted-foreground">v1.0.0</p>
+        <p className="text-[10px] text-muted-foreground">v2.1.0</p>
       </div>
     </aside>
   );
