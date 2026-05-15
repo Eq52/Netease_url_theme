@@ -143,6 +143,7 @@ export function AboutPage() {
                 { label: '无损', tier: 'vip' },
                 { label: 'Hi-Res', tier: 'svip' },
                 { label: '环绕声', tier: 'svip' },
+                { label: '杜比全景声', tier: 'svip' },
                 { label: '母带', tier: 'svip' },
               ].map((q) => (
                 <span
