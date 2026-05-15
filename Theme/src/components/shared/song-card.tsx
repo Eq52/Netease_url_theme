@@ -15,7 +15,7 @@ export function SongCard({ song, queue, index }: SongCardProps) {
   const { playSong, currentSongId, isLoading } = usePlayerStore();
 
   const isActive = currentSongId === song.id;
-  const coverUrl = song.picUrl || '/logo.svg';
+  const coverUrl = song.picUrl || '/logo.png';
 
   const handleClick = () => {
     if (!isLoading) {
@@ -38,7 +38,7 @@ export function SongCard({ song, queue, index }: SongCardProps) {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = '/logo.svg';
+            (e.target as HTMLImageElement).src = '/logo.png';
           }}
         />
 

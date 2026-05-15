@@ -5,13 +5,11 @@ import { useNavStore } from '@/lib/stores/nav-store';
 import {
   ChevronRight,
   Sparkles,
-  Cookie,
   Download,
   PlayCircle,
   Info,
 } from 'lucide-react';
 import { QualitySettings } from '@/components/settings/quality-settings';
-import { CookieSettings } from '@/components/settings/cookie-settings';
 import { DownloadSettings } from '@/components/settings/download-settings';
 import { PlaybackSettings } from '@/components/settings/playback-settings';
 import { AboutPage } from '@/components/settings/about-page';
@@ -22,12 +20,6 @@ const settingsItems = [
     label: '默认音质',
     description: '选择播放音质',
     icon: Sparkles,
-  },
-  {
-    key: 'cookie',
-    label: 'Cookie 管理',
-    description: '配置账号 Cookie',
-    icon: Cookie,
   },
   {
     key: 'download',
@@ -51,7 +43,6 @@ const settingsItems = [
 
 const subPageComponents: Record<string, React.ComponentType> = {
   quality: QualitySettings,
-  cookie: CookieSettings,
   download: DownloadSettings,
   playback: PlaybackSettings,
   about: AboutPage,
@@ -103,7 +94,7 @@ export function SettingsView() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              onClick={() => openSettingsSubPage(item.key as 'quality' | 'cookie' | 'download' | 'playback' | 'about')}
+              onClick={() => openSettingsSubPage(item.key as 'quality' | 'download' | 'playback' | 'about')}
               className="w-full flex items-center gap-4 p-4 rounded-xl bg-surface-card hover:bg-surface-hover border border-transparent hover:border-gold/10 transition-all duration-200 group text-left"
             >
               <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors">

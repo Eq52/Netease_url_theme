@@ -57,12 +57,12 @@ export function SongRow({ song, index, queue, showIndex = true }: SongRowProps) 
       {/* Cover thumbnail */}
       <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 bg-surface">
         <img
-          src={song.picUrl || '/logo.svg'}
+          src={song.picUrl || '/logo.png'}
           alt={song.name}
           className="w-full h-full object-cover"
           loading="lazy"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = '/logo.svg';
+            (e.target as HTMLImageElement).src = '/logo.png';
           }}
         />
       </div>

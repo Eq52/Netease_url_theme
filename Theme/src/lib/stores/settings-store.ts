@@ -8,7 +8,6 @@ interface SettingsStore {
   lyricsFontSize: number;
   defaultVolume: number;
   autoDownload: boolean;
-  cookie: string;
 
   loadSettings: () => void;
   saveSettings: () => void;
@@ -25,7 +24,6 @@ const defaults: Omit<SettingsStore, 'loadSettings' | 'saveSettings' | 'updateSet
   lyricsFontSize: 16,
   defaultVolume: 80,
   autoDownload: false,
-  cookie: '',
 };
 
 export const useSettingsStore = create<SettingsStore>((set, get) => ({
@@ -44,7 +42,6 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
           lyricsFontSize: parsed.lyricsFontSize ?? defaults.lyricsFontSize,
           defaultVolume: parsed.defaultVolume ?? defaults.defaultVolume,
           autoDownload: parsed.autoDownload ?? defaults.autoDownload,
-          cookie: parsed.cookie ?? defaults.cookie,
         });
       }
     } catch {
@@ -62,7 +59,6 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
       lyricsFontSize: state.lyricsFontSize,
       defaultVolume: state.defaultVolume,
       autoDownload: state.autoDownload,
-      cookie: state.cookie,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
   },

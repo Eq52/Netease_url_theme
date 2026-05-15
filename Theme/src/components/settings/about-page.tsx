@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
-import { ArrowLeft, Music2, Github, Heart, ExternalLink, Code2, Palette, Database, Globe, Shield } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowLeft, Music2, Github, Heart, ExternalLink, Code2, Palette, Database, FolderOpen } from 'lucide-react';
 import { useNavStore } from '@/lib/stores/nav-store';
 import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
@@ -10,16 +10,26 @@ export function AboutPage() {
   const { closeSettingsSubPage } = useNavStore();
   const [version, setVersion] = useState('');
   const [cookieStatus, setCookieStatus] = useState('');
+  const [downloadsDir, setDownloadsDir] = useState('');
 
   useEffect(() => {
     const fetchHealth = async () => {
       try {
         const health = await api.getHealth();
-        setVersion(health.version || '未知');
-        setCookieStatus(health.cookie_status === 'valid' ? '有效' : '无效或过期');
+        const data = health.data;
+        if (data) {
+          setVersion(data.version || '未知');
+          setCookieStatus(data.cookie_status === 'valid' ? '有效' : '无效或过期');
+          setDownloadsDir(data.downloads_dir || '未设置');
+        } else {
+          setVersion('未知');
+          setCookieStatus('未知');
+          setDownloadsDir('未知');
+        }
       } catch {
         setVersion('无法获取');
         setCookieStatus('无法连接');
+        setDownloadsDir('无法连接');
       }
     };
     fetchHealth();
@@ -65,6 +75,15 @@ export function AboutPage() {
             <p className={`text-sm font-medium ${cookieStatus === '有效' ? 'text-emerald-400' : 'text-amber-400'}`}>
               {cookieStatus}
             </p>
+          </div>
+
+          {/* Downloads Dir */}
+          <div className="p-4 rounded-xl bg-surface-card">
+            <p className="text-xs text-muted-foreground mb-1">下载目录</p>
+            <div className="flex items-center gap-2">
+              <FolderOpen className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+              <p className="text-sm font-medium text-white truncate">{downloadsDir}</p>
+            </div>
           </div>
 
           {/* API Info */}

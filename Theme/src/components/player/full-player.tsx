@@ -61,7 +61,7 @@ export function FullPlayer() {
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-  const coverUrl = useMemo(() => currentSong?.pic || '/logo.svg', [currentSong?.pic]);
+  const coverUrl = useMemo(() => currentSong?.pic || '/logo.png', [currentSong?.pic]);
 
   const handleDownload = useCallback(async () => {
     if (!currentSong) return;
@@ -129,7 +129,7 @@ export function FullPlayer() {
                       alt={currentSong.name}
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/logo.svg';
+                        (e.target as HTMLImageElement).src = '/logo.png';
                       }}
                     />
                   </div>

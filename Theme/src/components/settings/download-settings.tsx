@@ -21,8 +21,9 @@ export function DownloadSettings() {
       try {
         const health = await api.getHealth();
         if (!cancelled) {
-          setDownloadsDir(health.downloads_dir || '未设置');
-          setVersion(health.version || '未知');
+          const data = health.data;
+          setDownloadsDir(data?.downloads_dir || '未设置');
+          setVersion(data?.version || '未知');
         }
       } catch {
         if (!cancelled) setDownloadsDir('无法获取');

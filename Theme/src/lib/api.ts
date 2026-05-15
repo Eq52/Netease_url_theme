@@ -70,7 +70,7 @@ export const api = {
     blobDownload('/Download', { id, quality }),
 
   getHealth: () =>
-    fetchApi<{ cookie_status: string; version: string; downloads_dir: string }>('/health', {
+    fetchApi<{ status: number; success: boolean; message: string; data: { cookie_status: string; version: string; downloads_dir: string; service: string; timestamp: number } }>('/health', {
       method: 'GET',
     }),
 };

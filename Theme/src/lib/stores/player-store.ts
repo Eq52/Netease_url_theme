@@ -14,6 +14,7 @@ interface PlayerStore {
   currentSong: SongDetail | null;
   currentSongId: number | null;
   isLoading: boolean;
+  _requestId: number;
 
   // Playback State
   isPlaying: boolean;
@@ -59,6 +60,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   currentSong: null,
   currentSongId: null,
   isLoading: false,
+  _requestId: 0,
   isPlaying: false,
   currentTime: 0,
   duration: 0,
@@ -74,19 +76,23 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   setAplayerControls: (controls) => set({ aplayerControls: controls }),
 
   playSong: async (song, queue, index) => {
-    const store = get();
-    set({ isLoading: true, currentSongId: song.id });
+    const requestId = ++get()._requestId;
+    set({ isLoading: true });
 
     try {
       // Import api dynamically to avoid circular deps
       const { api } = await import('@/lib/api');
       const { parseLRC, mergeTranslations } = await import('@/lib/music-utils');
-      
+
       // Get quality from settings
       const settingsStr = localStorage.getItem('aural-settings');
       const quality = settingsStr ? JSON.parse(settingsStr).defaultQuality || 'exhigh' : 'exhigh';
 
       const response = await api.getSongDetail(String(song.id), quality);
+
+      // Abort if a newer request has been made while we waited
+      if (get()._requestId !== requestId) return;
+
       const detail = response.data;
 
       if (!detail || !detail.url) {
@@ -106,6 +112,10 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
         set({ queue, currentIndex: idx >= 0 ? idx : 0 });
       }
 
+      // Destroy current APlayer BEFORE updating state so APlayerWrapper
+      // picks up the new song on the next render cycle
+      get().aplayerControls?.destroy();
+
       set({
         currentSong: detail,
         currentSongId: song.id,
@@ -115,12 +125,12 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
         currentLyricIndex: -1,
         isLoading: false,
       });
-
-      // Signal APlayer to load new song
-      store.aplayerControls?.destroy();
     } catch (error) {
-      console.error('Failed to play song:', error);
-      set({ isLoading: false });
+      // Only update state if this is still the latest request
+      if (get()._requestId === requestId) {
+        console.error('Failed to play song:', error);
+        set({ isLoading: false });
+      }
     }
   },
 
@@ -135,8 +145,8 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   },
 
   playNext: () => {
-    const { queue, currentIndex, playSong } = get();
-    if (queue.length === 0) return;
+    const { queue, currentIndex, isLoading, playSong } = get();
+    if (queue.length === 0 || isLoading) return;
     const nextIndex = (currentIndex + 1) % queue.length;
     const nextSong = queue[nextIndex];
     if (nextSong) {
@@ -145,8 +155,8 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
   },
 
   playPrev: () => {
-    const { queue, currentIndex, playSong } = get();
-    if (queue.length === 0) return;
+    const { queue, currentIndex, isLoading, playSong } = get();
+    if (queue.length === 0 || isLoading) return;
     const prevIndex = currentIndex <= 0 ? queue.length - 1 : currentIndex - 1;
     const prevSong = queue[prevIndex];
     if (prevSong) {

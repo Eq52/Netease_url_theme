@@ -32,6 +32,8 @@ export function APlayerWrapper() {
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<APlayerInstance | null>(null);
   const updateIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const prevUrlRef = useRef<string | null>(null);
+  const prevSongIdRef = useRef<number | null>(null);
 
   const {
     currentSong,
@@ -45,11 +47,9 @@ export function APlayerWrapper() {
     setCurrentLyricIndex,
   } = usePlayerStore();
 
-  const prevSongIdRef = useRef<number | null>(null);
-
   useEffect(() => {
     if (!containerRef.current) return;
-    
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const APlayerCtor = (window as any).APlayer as APlayerConstructor | undefined;
     if (!APlayerCtor) {
@@ -58,8 +58,10 @@ export function APlayerWrapper() {
     }
 
     // Only create/update player when we have a new song with a valid URL
-    if (!currentSong?.url || currentSongId === prevSongIdRef.current) return;
-    prevSongIdRef.current = currentSongId;
+    const url = currentSong?.url;
+    if (!url || (url === prevUrlRef.current && currentSongId === prevSongIdRef.current)) return;
+    prevUrlRef.current = url;
+    prevSongIdRef.current = currentSongId ?? null;
 
     // Destroy existing player
     if (playerRef.current) {
@@ -71,6 +73,12 @@ export function APlayerWrapper() {
       playerRef.current = null;
     }
 
+    // Clear interval
+    if (updateIntervalRef.current) {
+      clearInterval(updateIntervalRef.current);
+      updateIntervalRef.current = null;
+    }
+
     // Clear container
     const container = containerRef.current;
     container.innerHTML = '';
@@ -79,10 +87,10 @@ export function APlayerWrapper() {
       const player = new APlayerCtor({
         container,
         audio: {
-          url: currentSong.url,
-          name: currentSong.name,
-          artist: currentSong.ar_name,
-          cover: currentSong.pic,
+          url: currentSong!.url,
+          name: currentSong!.name,
+          artist: currentSong!.ar_name,
+          cover: currentSong!.pic,
         },
         autoplay: true,
         volume: volume * 100,
@@ -101,6 +109,7 @@ export function APlayerWrapper() {
         destroy: () => {
           if (updateIntervalRef.current) {
             clearInterval(updateIntervalRef.current);
+            updateIntervalRef.current = null;
           }
           try {
             player.destroy();
@@ -108,6 +117,8 @@ export function APlayerWrapper() {
             // ignore
           }
           playerRef.current = null;
+          prevUrlRef.current = null;
+          prevSongIdRef.current = null;
         },
       });
 

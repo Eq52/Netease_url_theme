@@ -40,7 +40,7 @@ export function MiniPlayer() {
   if (!currentSong) return null;
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
-  const coverUrl = currentSong.pic || '/logo.svg';
+  const coverUrl = currentSong.pic || '/logo.png';
 
   return (
     <motion.div
@@ -74,7 +74,7 @@ export function MiniPlayer() {
             alt={currentSong.name}
             className="w-full h-full object-cover"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = '/logo.svg';
+              (e.target as HTMLImageElement).src = '/logo.png';
             }}
           />
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">

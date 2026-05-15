@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export type ViewType = 'search' | 'playlist' | 'album' | 'settings';
-type SettingsSubPage = 'quality' | 'cookie' | 'download' | 'playback' | 'about' | null;
+type SettingsSubPage = 'quality' | 'download' | 'playback' | 'about' | null;
 
 interface NavStore {
   activeView: ViewType;
